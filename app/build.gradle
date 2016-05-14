@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'joda-time:joda-time:2.9.2'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.google.guava:guava:19.0'
@@ -37,5 +37,7 @@ dependencies {
     testCompile 'org.robolectric:robolectric:3.0'
     testCompile 'org.mockito:mockito-core:1.7'
     testCompile 'com.google.code.gson:gson:2.6.2'
+    testCompile 'org.robolectric:shadows-support-v4:3.0'
+    compile 'com.android.support:cardview-v7:24.0.0-alpha1'
 }
 

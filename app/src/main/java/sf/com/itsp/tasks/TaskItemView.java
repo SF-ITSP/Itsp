@@ -14,6 +14,10 @@ public class TaskItemView extends LinearLayout{
 
     private TextView operationValueTextView;
 
+    private TextView arriveTimeValueTextView;
+
+    private TextView latestDepartureTimeValueTextView;
+
     public TaskItemView(Context context) {
         super(context);
         initUi();
@@ -35,10 +39,14 @@ public class TaskItemView extends LinearLayout{
 
         addressValueTextView = (TextView) findViewById(R.id.address_name);
         operationValueTextView = (TextView) findViewById(R.id.operation_type);
+        arriveTimeValueTextView = (TextView) findViewById(R.id.arrive_time);
+        latestDepartureTimeValueTextView = (TextView) findViewById(R.id.latest_departure_time);
     }
 
     public void setModel(Task task) {
         addressValueTextView.setText(task.getAddress());
         operationValueTextView.setText(task.getOperation());
+        arriveTimeValueTextView.setText(task.getArriveTime());
+        latestDepartureTimeValueTextView.setText(task.getLatestDepartureTime());
     }
 }

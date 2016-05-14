@@ -6,9 +6,15 @@ public class Task {
 
     private String operation;
 
-    public Task(String address, String operation) {
+    private String arriveTime;
+
+    private String latestDepartureTime;
+
+    public Task(String address, String operation, String arriveTime,String latestDepartureTime) {
         this.address = address;
         this.operation = operation;
+        this.arriveTime = arriveTime;
+        this.latestDepartureTime = latestDepartureTime;
     }
 
     public String getAddress() {
@@ -17,5 +23,13 @@ public class Task {
 
     public String getOperation() {
         return operation;
+    }
+
+    public String getArriveTime() {
+        return arriveTime;
+    }
+
+    public String getLatestDepartureTime() {
+        return latestDepartureTime;
     }
 }
