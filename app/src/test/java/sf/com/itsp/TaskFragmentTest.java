@@ -53,6 +53,12 @@ public class TaskFragmentTest {
         assertThat(listView).has(childWith(text("24:00")));
 
         assertThat(listView).has(childWith(text("10:30")));
+
+        assertThat(listView).has(childWith(text(120)));
+        assertThat(listView).has(childWith(text(30)));
+
+        assertThat(listView).has(childWith(text("始发")));
+        assertThat(listView).has(childWith(text("经停")));
     }
 
     @Test

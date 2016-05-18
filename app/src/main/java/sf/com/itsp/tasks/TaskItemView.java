@@ -9,14 +9,8 @@ import android.widget.TextView;
 import sf.com.itsp.R;
 import sf.com.itsp.domain.Task;
 
-public class TaskItemView extends LinearLayout{
-    private TextView addressValueTextView;
-
-    private TextView operationValueTextView;
-
-    private TextView arriveTimeValueTextView;
-
-    private TextView latestDepartureTimeValueTextView;
+public class TaskItemView extends LinearLayout {
+    private TextView addressValueTextView, operationValueTextView, arriveTimeValueTextView, latestDepartureTimeValueTextView, waitingTimeValueTextView, vehicleStatusValueTextView;
 
     public TaskItemView(Context context) {
         super(context);
@@ -41,6 +35,8 @@ public class TaskItemView extends LinearLayout{
         operationValueTextView = (TextView) findViewById(R.id.operation_type);
         arriveTimeValueTextView = (TextView) findViewById(R.id.arrive_time);
         latestDepartureTimeValueTextView = (TextView) findViewById(R.id.latest_departure_time);
+        waitingTimeValueTextView = (TextView) findViewById(R.id.waiting_time_value);
+        vehicleStatusValueTextView = (TextView) findViewById(R.id.vehicle_status);
     }
 
     public void setModel(Task task) {
@@ -48,5 +44,7 @@ public class TaskItemView extends LinearLayout{
         operationValueTextView.setText(task.getOperation());
         arriveTimeValueTextView.setText(task.getArriveTime());
         latestDepartureTimeValueTextView.setText(task.getLatestDepartureTime());
+        waitingTimeValueTextView.setText(task.getWaitingTime() + "");
+        vehicleStatusValueTextView.setText(task.getVehicleStatus());
     }
 }
