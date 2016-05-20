@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'net.saliman.cobertura'
 
 android {
     compileSdkVersion 17
@@ -16,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+cobertura {
+    coverageExcludes = ['.*com.meetme.android.horizontallistview.HorizontalListView.*']
 }
 
 dependencies {
