@@ -2,37 +2,117 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="#fff"
+    android:paddingBottom="2dp"
+    android:paddingTop="2dp">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/arrive_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:layout_marginTop="33dp"
-        android:layout_marginBottom="33dp">
+        android:paddingLeft="65dp"
+        android:textColor="#8bc649"
+        android:textSize="20sp" />
 
-        <ImageView
-            android:id="@+id/address_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/address_icon" />
+    <TextView
+        android:id="@+id/arrive_time_describe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/arrive_time"
+        android:paddingLeft="65dp"
+        android:paddingTop="3dp"
+        android:text="到达时间"
+        android:textColor="#86929f"
+        android:textSize="10sp" />
 
-        <TextView
-            android:id="@+id/address_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="34dp"
-            android:layout_marginRight="22dp"
-            android:textColor="#3c4f5e"
-            android:textSize="20sp" />
+    <TextView
+        android:id="@+id/latest_departure_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/arrive_time"
+        android:paddingLeft="40dp"
+        android:textColor="#8bc649"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/operation_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="#ffffff"
-            android:padding="2dp"
-            android:background="@drawable/background_shape"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/latest_departure_time_describe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/latest_departure_time"
+        android:layout_toRightOf="@id/arrive_time_describe"
+        android:paddingLeft="46dp"
+        android:paddingTop="3dp"
+        android:text="最晚出发时间"
+        android:textColor="#86929f"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/waiting_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/arrive_time_describe"
+        android:paddingLeft="65dp"
+        android:paddingTop="4dp"
+        android:text="等待时间"
+        android:textColor="#86929f"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/waiting_time_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/arrive_time_describe"
+        android:layout_toRightOf="@id/waiting_time"
+        android:paddingLeft="25dp"
+        android:paddingTop="3dp"
+        android:textColor="#FFFA0819"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/waiting_time_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/arrive_time_describe"
+        android:layout_toRightOf="@id/waiting_time_value"
+        android:paddingLeft="1dp"
+        android:paddingTop="3dp"
+        android:text="分钟"
+        android:textColor="#FFFA0819"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/address_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/waiting_time"
+        android:paddingLeft="65dp"
+        android:paddingRight="22dp"
+        android:textColor="#3c4f5e"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/vehicle_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/waiting_time"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/address_name"
+        android:background="@drawable/background_start"
+        android:padding="1dp"
+        android:textColor="#ffffff"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/operation_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/waiting_time"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/vehicle_status"
+        android:background="@drawable/background_shape"
+        android:padding="1dp"
+        android:textColor="#ffffff"
+        android:textSize="12sp" />
+
 </RelativeLayout>
