@@ -19,15 +19,15 @@ android {
     }
 }
 
+
 cobertura {
     coverageExcludes = ['.*com.meetme.android.horizontallistview.HorizontalListView.*']
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'joda-time:joda-time:2.9.2'
-    compile 'com.google.code.gson:gson:2.6.2'
-    compile 'com.google.guava:guava:19.0'
+    compile project(':library')
+    compile project(':contact')
     compile 'com.android.support:support-v4:18.0.0'
     compile 'com.android.support:recyclerview-v7:21.0.0'
     compile 'de.hdodenhof:circleimageview:2.0.0'

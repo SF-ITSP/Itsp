@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import sf.com.itsp.R;
-import sf.com.itsp.domain.Task;
+import com.sf.contacts.domain.Task;
 
 public class TaskItemView extends LinearLayout {
     private TextView addressValueTextView, operationValueTextView, arriveTimeValueTextView, latestDepartureTimeValueTextView, waitingTimeValueTextView, vehicleStatusValueTextView;

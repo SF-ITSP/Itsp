@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.ViewGroup;
 
 import sf.com.itsp.adapter.ItspBaseAdapter;
-import sf.com.itsp.domain.Task;
+import com.sf.contacts.domain.Task;
 
 public class TaskAdapter extends ItspBaseAdapter<TaskItemView, Task>{
 

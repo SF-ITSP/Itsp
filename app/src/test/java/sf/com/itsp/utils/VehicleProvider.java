@@ -1,8 +1,9 @@
 package sf.com.itsp.utils;
 
 import com.google.gson.reflect.TypeToken;
+import com.sf.app.library.utils.JsonConverter;
 
-import sf.com.itsp.domain.Vehicle;
+import com.sf.contacts.domain.Vehicle;
 
 import static sf.com.itsp.shadows.ShadowConnectionProxy.fakeVehicles;
 

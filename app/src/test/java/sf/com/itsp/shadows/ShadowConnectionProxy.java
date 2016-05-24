@@ -4,9 +4,9 @@ import org.robolectric.annotation.Implements;
 
 import java.util.List;
 
-import sf.com.itsp.domain.Task;
-import sf.com.itsp.domain.Vehicle;
-import sf.com.itsp.utils.ConnectionProxy;
+import com.sf.contacts.domain.Task;
+import com.sf.contacts.domain.Vehicle;
+import com.sf.app.library.utils.ConnectionProxy;
 
 import static com.google.common.collect.Lists.newArrayList;
 

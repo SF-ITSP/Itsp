@@ -5,7 +5,7 @@ import org.junit.runners.model.InitializationError;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.internal.bytecode.InstrumentationConfiguration;
 
-import sf.com.itsp.utils.ConnectionProxy;
+import com.sf.app.library.utils.ConnectionProxy;
 
 public class BasicTestRunner extends RobolectricGradleTestRunner {
     public BasicTestRunner(Class<?> klass) throws InitializationError {
