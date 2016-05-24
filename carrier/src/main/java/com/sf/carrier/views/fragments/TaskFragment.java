@@ -1,4 +1,4 @@
-package com.sf.views.fragments;
+package com.sf.carrier.views.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.sf.carrier.R;
-import com.sf.adapters.TaskListViewAdapter;
+import com.sf.carrier.adapters.TaskListViewAdapter;
 
-import static com.sf.adapters.TaskListViewAdapter.TaskTypeSelection.values;
+import static com.sf.carrier.adapters.TaskListViewAdapter.TaskTypeSelection.values;
 
 public class TaskFragment extends Fragment {
 

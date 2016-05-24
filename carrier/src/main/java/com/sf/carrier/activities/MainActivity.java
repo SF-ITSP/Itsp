@@ -1,11 +1,11 @@
-package com.sf.activities;
+package com.sf.carrier.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
-import com.sf.R;
-import com.sf.adapters.TabPageAdapter;
+import com.sf.carrier.R;
+import com.sf.carrier.adapters.TabPageAdapter;
 import com.viewpagerindicator.TabPageIndicator;
 
 public class MainActivity extends FragmentActivity {

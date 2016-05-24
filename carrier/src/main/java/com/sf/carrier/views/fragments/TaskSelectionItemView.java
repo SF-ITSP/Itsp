@@ -1,4 +1,4 @@
-package com.sf.views.fragments;
+package com.sf.carrier.views.fragments;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sf.carrier.R;
-import com.sf.adapters.TaskListViewAdapter;
+import com.sf.carrier.adapters.TaskListViewAdapter;
 
 public class TaskSelectionItemView extends LinearLayout {
     private ImageView headerIcon;

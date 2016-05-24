@@ -1,4 +1,4 @@
-package com.sf.activities;
+package com.sf.carrier.activities;
 
 import android.app.Activity;
 

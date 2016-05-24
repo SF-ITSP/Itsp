@@ -1,4 +1,4 @@
-package com.sf.adapters;
+package com.sf.carrier.adapters;
 
 
 import android.content.Context;
@@ -6,13 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sf.carrier.R;
+import com.sf.app.library.adapters.ItspBaseAdapter;
 import com.sf.carrier.activities.UnScheduleActivity;
-import com.sf.views.fragments.TaskSelectionItemView;
+import com.sf.carrier.views.fragments.TaskSelectionItemView;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.sf.adapters.TaskListViewAdapter.TaskTypeSelection.toList;
+import static com.sf.carrier.adapters.TaskListViewAdapter.TaskTypeSelection.toList;
 
 public class TaskListViewAdapter extends ItspBaseAdapter {
     public TaskListViewAdapter(Context context) {
