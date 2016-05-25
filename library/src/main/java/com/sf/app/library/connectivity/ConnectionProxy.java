@@ -1,13 +1,11 @@
 package com.sf.app.library.connectivity;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 import com.google.gson.reflect.TypeToken;
 import com.sf.app.library.domain.ServerAddress;
 import com.sf.app.library.utils.JsonConverter;
 import com.sf.app.library.utils.PropertiesProvider;
-import com.sf.app.library.connectivity.HttpClient;
 import com.sf.contacts.domain.Requirement;
 import com.sf.contacts.domain.Task;
 import com.sf.contacts.domain.Vehicle;
@@ -59,7 +57,7 @@ public class ConnectionProxy {
 
         public List<?> request(Context context) {
             ServerAddress serverAddress = PropertiesProvider.getInstance(context).getServerAddress();
-            String request = new HttpClient(serverAddress.host, serverAddress.port).request(path);
+            String request = new HttpClient(serverAddress.host).request(path);
 
             return convert(request);
         }

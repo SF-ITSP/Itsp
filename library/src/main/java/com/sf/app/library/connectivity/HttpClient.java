@@ -1,6 +1,7 @@
 package com.sf.app.library.connectivity;
 
 import com.google.common.io.CharStreams;
+import com.sf.app.library.connectivity.ResponseResult.ResponseResultType;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
@@ -13,13 +14,11 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sf.app.library.connectivity.ResponseResult.ResponseResultType;
-
+import static com.sf.app.library.connectivity.ResponseResult.ResponseResultType.FAILED;
+import static com.sf.app.library.connectivity.ResponseResult.ResponseResultType.SUCCEEDED;
 import static com.sf.app.library.utils.IoUtil.disconnectQuietly;
 import static java.net.HttpURLConnection.HTTP_INTERNAL_ERROR;
 import static java.net.HttpURLConnection.HTTP_OK;
-import static com.sf.app.library.connectivity.ResponseResult.ResponseResultType.FAILED;
-import static com.sf.app.library.connectivity.ResponseResult.ResponseResultType.SUCCEEDED;
 
 public class HttpClient {
     private String HEADER_CONTENT_TYPE = "Content-Type";
@@ -27,17 +26,14 @@ public class HttpClient {
     private static final Charset DEFAULT_CHARSET = Charset.forName("UTF8");
     private static final int CONNECT_TIMEOUT_MILLIS = 30 * 1000;
     private static final int READ_TIMEOUT_MILLIS = 35 * 1000;
-    private static final String DEFAULT_PROTOCOL = "http";
 
     private String host;
-    private int port;
     private final static String URL_JOINER = "/";
 
     private Map<String, String> propertiesMap = new HashMap<String, String>();
 
-    public HttpClient(String host, int port) {
+    public HttpClient(String host) {
         this.host = host;
-        this.port = port;
     }
 
     public String request(String path) {
@@ -59,7 +55,7 @@ public class HttpClient {
     }
 
     private HttpURLConnection initConnection(String path) throws IOException {
-        URL url = new URL(DEFAULT_PROTOCOL, host, port, path);
+        URL url = new URL(host + path);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setConnectTimeout(8000);
