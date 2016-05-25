@@ -1,9 +1,9 @@
-package com.sf.app.library.utils.connectivity;
+package com.sf.app.library.connectivity;
 
-import com.sf.app.library.utils.connectivity.ResponseResult.ResponseResultType;
+import com.sf.app.library.connectivity.ResponseResult.ResponseResultType;
 
-import static com.sf.app.library.utils.connectivity.ResponseResult.ResponseResultType.FAILED;
-import static com.sf.app.library.utils.connectivity.ResponseResult.ResponseResultType.SUCCEEDED;
+import static com.sf.app.library.connectivity.ResponseResult.ResponseResultType.FAILED;
+import static com.sf.app.library.connectivity.ResponseResult.ResponseResultType.SUCCEEDED;
 
 public class HttpResponseResult {
     // todo :zy, need merge ResponseResult

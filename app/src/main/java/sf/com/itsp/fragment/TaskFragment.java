@@ -12,9 +12,10 @@ import android.widget.TextView;
 import java.util.List;
 
 import sf.com.itsp.R;
+
+import com.sf.app.library.connectivity.ConnectionProxy;
 import com.sf.contacts.domain.Vehicle;
 import sf.com.itsp.tasks.TaskAdapter;
-import com.sf.app.library.utils.ConnectionProxy;
 
 public class TaskFragment extends Fragment {
     private TextView vehicleNumber;

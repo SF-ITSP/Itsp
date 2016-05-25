@@ -15,7 +15,6 @@ import org.joda.time.DateTime;
 public class RequirementItemView extends LinearLayout {
     private TextView startView;
     private TextView endDateView;
-    private Requirement model;
 
     public RequirementItemView(Context context) {
         super(context);

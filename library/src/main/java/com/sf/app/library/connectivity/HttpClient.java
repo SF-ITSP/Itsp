@@ -1,4 +1,4 @@
-package com.sf.app.library.utils.connectivity;
+package com.sf.app.library.connectivity;
 
 import com.google.common.io.CharStreams;
 
@@ -13,13 +13,13 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sf.app.library.utils.connectivity.ResponseResult.ResponseResultType;
+import com.sf.app.library.connectivity.ResponseResult.ResponseResultType;
 
+import static com.sf.app.library.utils.IoUtil.disconnectQuietly;
 import static java.net.HttpURLConnection.HTTP_INTERNAL_ERROR;
 import static java.net.HttpURLConnection.HTTP_OK;
-import static com.sf.app.library.utils.connectivity.ResponseResult.ResponseResultType.FAILED;
-import static com.sf.app.library.utils.connectivity.ResponseResult.ResponseResultType.SUCCEEDED;
-import static com.sf.app.library.utils.IoUtil.disconnectQuietly;
+import static com.sf.app.library.connectivity.ResponseResult.ResponseResultType.FAILED;
+import static com.sf.app.library.connectivity.ResponseResult.ResponseResultType.SUCCEEDED;
 
 public class HttpClient {
     private String HEADER_CONTENT_TYPE = "Content-Type";

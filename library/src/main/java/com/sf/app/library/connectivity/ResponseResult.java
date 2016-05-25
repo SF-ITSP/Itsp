@@ -1,8 +1,8 @@
-package com.sf.app.library.utils.connectivity;
+package com.sf.app.library.connectivity;
 
 import java.util.List;
 
-import static com.sf.app.library.utils.connectivity.ResponseResult.ResponseResultType.FAILED;
+import static com.sf.app.library.connectivity.ResponseResult.ResponseResultType.FAILED;
 
 public class ResponseResult<T> {
 

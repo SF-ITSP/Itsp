@@ -1,14 +1,15 @@
 package com.sf.carrier.activities;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.sf.carrier.R;
-import com.sf.app.library.domain.ServerAddress;
-import com.sf.app.library.utils.PropertiesProvider;
 import com.sf.carrier.adapters.RequirementAdapter;
+import com.sf.contacts.domain.Requirement;
+
+import java.util.Date;
+
+import static java.util.Arrays.asList;
 
 public class UnScheduleActivity extends NavigationActivity {
 
@@ -17,36 +18,37 @@ public class UnScheduleActivity extends NavigationActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.un_schedule_activity);
-
-        findViewById(R.id.navigation_view);
-
-        View backView = findViewById(R.id.back_view);
-        backView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         initListView();
-
         requestRequirement();
     }
 
     private void requestRequirement() {
+        Requirement requirement = new Requirement();
+        requirement.setEndDate(new Date());
+        requirement.setStartDate(new Date());
+
+        /**
+         * @TODO: will fix this issue when request server, because it make a crash
+         */
 //        List<Requirement> requirements = ConnectionProxy.getInstance().requestRequirements(getBaseContext());
-//        adapter.setItems(requirements);
 
-        ServerAddress serverAddress = PropertiesProvider.getInstance(getApplicationContext()).getServerAddress();
-        String host = serverAddress.host;
-
-        Toast.makeText(getApplicationContext(), host, Toast.LENGTH_LONG).show();
+        adapter.setItems(asList(requirement));
     }
 
     private void initListView() {
         ListView listView = (ListView) findViewById(R.id.requirement_list_view);
         adapter = new RequirementAdapter(getApplicationContext());
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    protected int getTitleResId() {
+        return R.string.unscheduled;
+    }
+
+    @Override
+    protected int getContentViewId() {
+        return R.layout.un_schedule_activity;
     }
 }

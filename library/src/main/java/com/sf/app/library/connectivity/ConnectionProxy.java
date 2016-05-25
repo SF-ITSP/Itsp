@@ -7,7 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.sf.app.library.domain.ServerAddress;
 import com.sf.app.library.utils.JsonConverter;
 import com.sf.app.library.utils.PropertiesProvider;
-import com.sf.app.library.utils.connectivity.HttpClient;
+import com.sf.app.library.connectivity.HttpClient;
 import com.sf.contacts.domain.Requirement;
 import com.sf.contacts.domain.Task;
 import com.sf.contacts.domain.Vehicle;
