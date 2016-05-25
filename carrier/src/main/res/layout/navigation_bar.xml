@@ -3,8 +3,8 @@
     android:id="@+id/navigation_bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp"
-    android:background="@color/navigationBarColor">
+    android:background="@color/navigationBarColor"
+    android:padding="15dp">
 
     <Button
         android:id="@+id/back_button"
@@ -16,7 +16,6 @@
 
     <TextView
         android:id="@+id/title_view"
-        
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -24,5 +23,3 @@
         android:textColor="@color/navigationTitle"
         android:textSize="22sp" />
 </RelativeLayout>
-
-    
