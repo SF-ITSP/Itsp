@@ -1,6 +1,10 @@
 package com.sf.carrier.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.sf.carrier.R;
@@ -40,6 +44,18 @@ public class UnScheduleActivity extends NavigationActivity {
         ListView listView = (ListView) findViewById(R.id.requirement_list_view);
         adapter = new RequirementAdapter(getApplicationContext());
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                gotoResourceDistributeActivity();
+            }
+        });
+    }
+
+    private void gotoResourceDistributeActivity() {
+        Intent intent = new Intent(getApplicationContext(), ResourceDistributeActivity.class);
+        startActivity(intent);
     }
 
     @Override
