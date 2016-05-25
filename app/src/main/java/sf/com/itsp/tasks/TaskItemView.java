@@ -6,11 +6,17 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import sf.com.itsp.R;
 import com.sf.contacts.domain.Task;
 
+import sf.com.itsp.R;
+
 public class TaskItemView extends LinearLayout {
-    private TextView addressValueTextView, operationValueTextView, arriveTimeValueTextView, latestDepartureTimeValueTextView, waitingTimeValueTextView, vehicleStatusValueTextView;
+    private TextView addressValueTextView;
+    private TextView operationValueTextView;
+    private TextView arriveTimeValueTextView;
+    private TextView latestDepartureTimeValueTextView;
+    private TextView waitingTimeValueTextView;
+    private TextView vehicleStatusValueTextView;
 
     public TaskItemView(Context context) {
         super(context);
@@ -44,7 +50,7 @@ public class TaskItemView extends LinearLayout {
         operationValueTextView.setText(task.getOperation());
         arriveTimeValueTextView.setText(task.getArriveTime());
         latestDepartureTimeValueTextView.setText(task.getLatestDepartureTime());
-        waitingTimeValueTextView.setText(task.getWaitingTime() + "");
+        waitingTimeValueTextView.setText(String.valueOf(task.getWaitingTime()));
         vehicleStatusValueTextView.setText(task.getVehicleStatus());
     }
 }

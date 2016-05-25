@@ -1,7 +1,6 @@
 package sf.com.itsp;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
@@ -21,7 +20,6 @@ public class MainActivity extends FragmentActivity {
         initView();
     }
 
-
     public void initView() {
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_paper);
         TabPageIndicatorAdapter tabpageIndicatorAdapter = initFragment();
@@ -29,7 +27,6 @@ public class MainActivity extends FragmentActivity {
 
         TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);
-
     }
 
     private TabPageIndicatorAdapter initFragment() {
