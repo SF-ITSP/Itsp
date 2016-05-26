@@ -1,4 +1,4 @@
-package sf.com.itsp;
+package com.sf.itsp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
