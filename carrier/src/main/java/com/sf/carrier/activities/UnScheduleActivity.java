@@ -1,17 +1,21 @@
 package com.sf.carrier.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.sf.app.library.connectivity.ConnectionProxy;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.RequirementAdapter;
 import com.sf.contacts.domain.Requirement;
+import com.sf.contacts.domain.Vehicle;
 
 import java.util.Date;
+import java.util.List;
 
 import static java.util.Arrays.asList;
 
@@ -28,16 +32,16 @@ public class UnScheduleActivity extends NavigationActivity {
     }
 
     private void requestRequirement() {
-        Requirement requirement = new Requirement();
-        requirement.setEndDate(new Date());
-        requirement.setStartDate(new Date());
-
-        /**
-         * @TODO: will fix this issue when request server, because it make a crash
-         */
-//        List<Requirement> requirements = ConnectionProxy.getInstance().requestRequirements(getBaseContext());
-
-        adapter.setItems(asList(requirement));
+        new AsyncTask<Void, Void, List<Requirement>>() {
+            @Override
+            protected List doInBackground(Void... params) {
+                return  ConnectionProxy.getInstance().requestRequirements(getBaseContext());
+            }
+            @Override
+            protected void onPostExecute(List<Requirement> requirements) {
+                adapter.setItems(requirements);
+            }
+        }.execute();
     }
 
     private void initListView() {

@@ -45,7 +45,7 @@ public class ConnectionProxy {
     public enum RequestPath {
         Tasks("tasks", Task[].class),
         Vehicles("vehicles", Vehicle[].class),
-        Requirements("requirements", Requirement[].class);
+        Requirements("requirement", Requirement[].class);
 
         private final String path;
         private final TypeToken typeToken;
@@ -57,8 +57,7 @@ public class ConnectionProxy {
 
         public List<?> request(Context context) {
             ServerAddress serverAddress = PropertiesProvider.getInstance(context).getServerAddress();
-            String request = new HttpClient(serverAddress.host).request(path);
-
+            String  request =  new HttpClient(serverAddress.host).request(path);
             return convert(request);
         }
 

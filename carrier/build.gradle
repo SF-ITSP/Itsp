@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 17
+    compileSdkVersion 14
     buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "instrumentation.sf.com.carrier"
-        minSdkVersion 17
+        minSdkVersion 14
         versionCode 1
         versionName "1.0"
     }

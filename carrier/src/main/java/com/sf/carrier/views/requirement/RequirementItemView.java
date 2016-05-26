@@ -15,6 +15,8 @@ import org.joda.time.DateTime;
 public class RequirementItemView extends LinearLayout {
     private TextView startView;
     private TextView endDateView;
+    private TextView vehicleModelView;
+    private TextView capacityWeightView;
 
     public RequirementItemView(Context context) {
         super(context);
@@ -36,13 +38,16 @@ public class RequirementItemView extends LinearLayout {
         View inflate = inflater.inflate(R.layout.requirement_item_view, this, true);
         startView = (TextView) inflate.findViewById(R.id.start_date_view);
         endDateView = (TextView) inflate.findViewById(R.id.end_date_view);
+        vehicleModelView = (TextView) inflate.findViewById(R.id.vehicle_model_view);
+        capacityWeightView = (TextView) inflate.findViewById(R.id.capacity_weight_view);
     }
 
     public void setModel(Requirement requirement) {
         String startDatetime = new DateTime(requirement.getStartDate()).toString("MM月dd日 HH:mm");
         String endDatetime = new DateTime(requirement.getEndDate()).toString("MM月dd日 HH:mm");
-
         startView.setText(startDatetime);
         endDateView.setText(endDatetime);
+        vehicleModelView.setText(requirement.getVehicleModel());
+        capacityWeightView.setText(String.valueOf(requirement.getCapacityWeight()));
     }
 }
