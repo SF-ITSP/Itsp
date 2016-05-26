@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.sf.app.library.domain.ServerAddress;
 import com.sf.app.library.utils.JsonConverter;
 import com.sf.app.library.utils.PropertiesProvider;
+import com.sf.contacts.domain.Driver;
 import com.sf.contacts.domain.Requirement;
 import com.sf.contacts.domain.Task;
 import com.sf.contacts.domain.Vehicle;
@@ -15,6 +16,7 @@ import java.util.List;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Requirements;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Tasks;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Vehicles;
+import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Drivers;
 
 public class ConnectionProxy {
     private static ConnectionProxy instance;
@@ -42,10 +44,15 @@ public class ConnectionProxy {
         return (List<Requirement>) Requirements.request(context);
     }
 
+    public List<Driver> requestDrivers(Context context) {
+        return (List<Driver>) Drivers.request(context);
+    }
+
     public enum RequestPath {
         Tasks("tasks", Task[].class),
         Vehicles("vehicles", Vehicle[].class),
-        Requirements("requirements", Requirement[].class);
+        Requirements("requirements", Requirement[].class),
+        Drivers("drivers", Driver[].class);
 
         private final String path;
         private final TypeToken typeToken;

@@ -6,4 +6,5 @@
     <string name="start_time">计划开始:</string>
     <string name="end_time">计划结束:</string>
     <string name="resource_distribute">任务指派</string>
+    <string name="driver_tip">请选择合适的司机</string>
 </resources>
