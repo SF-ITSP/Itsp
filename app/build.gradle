@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "sf.com.itsp"
+        applicationId "com.sf.itsp"
         minSdkVersion 17
         versionCode 1
         versionName "1.0"
