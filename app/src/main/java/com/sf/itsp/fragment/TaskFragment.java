@@ -76,7 +76,7 @@ public class TaskFragment extends Fragment {
 
             @Override
             protected void onPostExecute(List<Vehicle> vehicles) {
-                //vehicleNumber.setText(vehicles.get(0).getVehicleNumber());
+                vehicleNumber.setText(vehicles.get(0).getVehicleNumber());
             }
         }.execute();
     }

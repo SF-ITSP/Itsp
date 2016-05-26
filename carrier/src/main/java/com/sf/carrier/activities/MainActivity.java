@@ -3,7 +3,9 @@ package com.sf.carrier.activities;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.widget.Toast;
 
+import com.sf.CarrierApplication;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.TabPageAdapter;
 import com.viewpagerindicator.TabPageIndicator;
@@ -19,5 +21,8 @@ public class MainActivity extends FragmentActivity {
 
         viewPager.setAdapter(new TabPageAdapter(getSupportFragmentManager()));
         indicatorView.setViewPager(viewPager);
+
+        CarrierApplication application = (CarrierApplication) getApplication();
+        Toast.makeText(this.getBaseContext(), String.valueOf(application.getCarrierId()), Toast.LENGTH_SHORT).show();
     }
 }
