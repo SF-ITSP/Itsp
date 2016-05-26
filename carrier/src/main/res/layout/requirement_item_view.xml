@@ -5,6 +5,31 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/capacity_weight_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#FF3CBDEC"/>
+
+        <TextView
+            android:id="@+id/capacity_weight_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:text="@string/capacity_weight_unit"
+            android:textColor="#FF3CBDEC"/>
+
+        <TextView
+            android:id="@+id/vehicle_model_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:textColor="#FF3CBDEC" />
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

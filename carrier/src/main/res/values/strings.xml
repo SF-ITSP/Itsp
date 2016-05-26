@@ -7,4 +7,5 @@
     <string name="end_time">计划结束:</string>
     <string name="resource_distribute">任务指派</string>
     <string name="driver_tip">请选择合适的司机</string>
+    <string name="capacity_weight_unit">吨</string>
 </resources>

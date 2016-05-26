@@ -5,6 +5,8 @@ import java.util.Date;
 public class Requirement {
     private Date startDate;
     private Date endDate;
+    private String vehicleModel;
+    private int capacityWeight;
 
     public Date getStartDate() {
         return startDate;
@@ -20,5 +22,13 @@ public class Requirement {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public String getVehicleModel() {
+        return vehicleModel;
+    }
+
+    public int getCapacityWeight() {
+        return capacityWeight;
     }
 }
