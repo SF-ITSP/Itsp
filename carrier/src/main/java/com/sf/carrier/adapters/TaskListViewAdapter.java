@@ -1,8 +1,10 @@
 package com.sf.carrier.adapters;
 
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -51,13 +53,13 @@ public class TaskListViewAdapter extends ItspBaseAdapter {
         }
 
         public synchronized void startActivity(Context context) {
-            if (!isOpening) {
-                isOpening = true;
+            ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            String runningActivity = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
+            if (!runningActivity.equals(clazz.getName())) {
                 Intent intent = new Intent(context, clazz);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
-            isOpening = false;
         }
 
         public static List toList() {
