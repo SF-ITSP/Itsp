@@ -2,11 +2,12 @@ package com.sf.carrier.adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sf.carrier.R;
 import com.sf.app.library.adapters.ItspBaseAdapter;
+import com.sf.carrier.R;
 import com.sf.carrier.activities.UnScheduleActivity;
 import com.sf.carrier.views.fragments.TaskSelectionItemView;
 
@@ -41,10 +42,22 @@ public class TaskListViewAdapter extends ItspBaseAdapter {
         public static final int indicator = R.drawable.arrow;
         public final Class clazz;
 
+        private boolean isOpening;
+
         TaskTypeSelection(int icon, int title, Class clazz) {
             this.icon = icon;
             this.title = title;
             this.clazz = clazz;
+        }
+
+        public synchronized void startActivity(Context context) {
+            if (!isOpening) {
+                isOpening = true;
+                Intent intent = new Intent(context, clazz);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+            isOpening = false;
         }
 
         public static List toList() {
