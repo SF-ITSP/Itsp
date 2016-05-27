@@ -43,11 +43,11 @@ public class RequirementItemView extends LinearLayout {
     }
 
     public void setModel(Requirement requirement) {
-//        String startDatetime = new DateTime(requirement.getStartDate()).toString("MM月dd日 HH:mm");
-//        String endDatetime = new DateTime(requirement.getEndDate()).toString("MM月dd日 HH:mm");
-//        startView.setText(startDatetime);
-//        endDateView.setText(endDatetime);
-        vehicleModelView.setText(requirement.getVehicleModel());
+        String startDatetime = new DateTime(requirement.getStartDate()).toString("MM月dd日 HH:mm");
+        String endDatetime = new DateTime(requirement.getEndDate()).toString("MM月dd日 HH:mm");
+        startView.setText(startDatetime);
+        endDateView.setText(endDatetime);
+        vehicleModelView.setText(requirement.getVehicleType());
         capacityWeightView.setText(String.valueOf(requirement.getCapacityWeight()));
     }
 }
