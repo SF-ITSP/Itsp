@@ -5,4 +5,5 @@
     <dimen name="margin_five">5dp</dimen>
     <dimen name="assign_driver_title_text_size">18sp</dimen>
     <dimen name="assign_driver_button_text_size">20sp</dimen>
+    <dimen name="vehicle_card_text_size">18sp</dimen>
 </resources>
