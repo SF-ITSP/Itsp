@@ -1,70 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#fff"
+    android:paddingBottom="2dp"
+    android:paddingTop="2dp">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/capacity_weight_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textColor="#FF3CBDEC"/>
-
-        <TextView
-            android:id="@+id/capacity_weight_unit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="27dp"
-            android:text="@string/capacity_weight_unit"
-            android:textColor="#FF3CBDEC"/>
-
-        <TextView
-            android:id="@+id/vehicle_model_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:textColor="#FF3CBDEC" />
-    </RelativeLayout>
-    <RelativeLayout
+    <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/mission_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="200dp"
+        android:layout_margin="3dp"
+        app:cardBackgroundColor="#f9f9f9"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
 
-        <TextView
-            android:id="@+id/start_date_label"
+        <View
+            android:id="@+id/border_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_gravity="center"
+            android:background="#FFF4EEEE" />
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/start_time"
-            android:textColor="@color/gray_text" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/start_date_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/start_date_label"
-            android:textColor="@color/gray_text" />
+            <TextView
+                android:id="@+id/capacity_weight_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="100dp"
+                android:textColor="#FF3CBDEC"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/end_date_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/start_date_label"
-            android:layout_marginTop="5dp"
-            android:text="@string/end_time"
-            android:textColor="@color/gray_text" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="100dp"
+                android:text="吨"
+                android:textColor="#FF3CBDEC"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/end_date_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/start_date_view"
-            android:layout_alignTop="@+id/end_date_label"
-            android:layout_below="@+id/start_date_label"
-            android:textColor="@color/gray_text" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/vehicle_model_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="100dp"
+                android:textColor="#FF3CBDEC"
+                android:textSize="14sp" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/start_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_time"
+                android:layout_below="@id/capacity_weight_view"
+                android:textColor="@color/gray_text" />
+
+            <TextView
+                android:id="@+id/start_date_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_below="@id/capacity_weight_view"
+                android:layout_toRightOf="@+id/start_date_label"
+                android:textColor="@color/gray_text" />
+
+            <TextView
+                android:id="@+id/end_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/start_date_label"
+                android:layout_marginTop="5dp"
+                android:text="@string/end_time"
+                android:textColor="@color/gray_text" />
+
+            <TextView
+                android:id="@+id/end_date_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/start_date_view"
+                android:layout_alignTop="@+id/end_date_label"
+                android:layout_below="@+id/start_date_label"
+                android:textColor="@color/gray_text" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
