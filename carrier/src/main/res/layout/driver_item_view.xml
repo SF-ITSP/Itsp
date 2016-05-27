@@ -8,7 +8,8 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_margin="@dimen/margin_five"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/sets"/>
 
     <TextView
         android:id="@+id/driver_name"
