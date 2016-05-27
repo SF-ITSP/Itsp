@@ -47,7 +47,7 @@ public class RequirementItemView extends LinearLayout {
         String endDatetime = new DateTime(requirement.getEndDate()).toString("MM月dd日 HH:mm");
         startView.setText(startDatetime);
         endDateView.setText(endDatetime);
-        vehicleModelView.setText(requirement.getVehicleModel());
+        vehicleModelView.setText(requirement.getVehicleType());
         capacityWeightView.setText(String.valueOf(requirement.getCapacityWeight()));
     }
 }

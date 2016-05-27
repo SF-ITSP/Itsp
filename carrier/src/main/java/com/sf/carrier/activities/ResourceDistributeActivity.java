@@ -4,13 +4,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.sf.app.library.connectivity.ConnectionProxy;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.DriverViewAdapter;
+import com.sf.carrier.views.fragments.AssignDriverDialogFragment;
 import com.sf.contacts.domain.Driver;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ResourceDistributeActivity extends NavigationActivity {
     private RecyclerView driverRecyclerView;
@@ -26,10 +30,12 @@ public class ResourceDistributeActivity extends NavigationActivity {
     }
 
     private void initDriverList() {
-        new AsyncTask<Void, Void, List<Driver>>() {
+        new AsyncTask<String, Void, List<Driver>>() {
             @Override
-            protected List<Driver> doInBackground(Void... params) {
-                return ConnectionProxy.getInstance().requestDrivers(getApplicationContext(), null);
+            protected List<Driver> doInBackground(String... params) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("carrierId", "888");
+                return ConnectionProxy.getInstance().requestDrivers(getApplicationContext(), map);
             }
 
             @Override
@@ -48,6 +54,14 @@ public class ResourceDistributeActivity extends NavigationActivity {
 
         driverAdapter = new DriverViewAdapter(getApplicationContext());
         driverRecyclerView.setAdapter(driverAdapter);
+
+        driverAdapter.setOnItemClickLitener(new DriverViewAdapter.OnItemClickLitener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                AssignDriverDialogFragment assignDriverDialogFragment = new AssignDriverDialogFragment();
+                assignDriverDialogFragment.show(getFragmentManager(), "assign driver");
+            }
+        });
     }
 
     @Override

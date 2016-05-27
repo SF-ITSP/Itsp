@@ -53,7 +53,7 @@ public class ConnectionProxy {
         Drivers("drivers", Driver[].class) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
-                return "";
+                return "/" + parameter.get("carrierId");
             }
         },
         Tasks("tasks", Task[].class) {
