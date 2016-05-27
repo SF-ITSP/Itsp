@@ -51,7 +51,7 @@ public class ConnectionProxy {
     public enum RequestPath {
         Tasks("tasks", Task[].class),
         Vehicles("vehicles", Vehicle[].class),
-        Requirements("requirements", Requirement[].class),
+        Requirements("requirements/all", Requirement[].class),
         Drivers("drivers", Driver[].class);
         
         private final String path;
