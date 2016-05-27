@@ -8,8 +8,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.sf.carrier.CarrierApplication;
 import com.sf.app.library.connectivity.ConnectionProxy;
+import com.sf.carrier.CarrierApplication;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.RequirementAdapter;
 import com.sf.contacts.domain.Requirement;

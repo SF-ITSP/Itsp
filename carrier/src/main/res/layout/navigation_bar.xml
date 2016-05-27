@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/navigationBarColor"
-    android:padding="15dp">
+    android:padding="@dimen/activity_horizontal_margin">
 
     <Button
         android:id="@+id/back_button"
