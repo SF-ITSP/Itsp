@@ -8,4 +8,5 @@
     <color name="navigationBarColor">#4A90E2</color>
     <color name="dialogBackground">#FFF</color>
     <color name="divider_color">#8b8b8b</color>
+    <color name="assignDriverButton">#25c428</color>
 </resources>
