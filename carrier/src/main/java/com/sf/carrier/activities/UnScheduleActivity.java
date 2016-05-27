@@ -9,15 +9,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.sf.app.library.connectivity.ConnectionProxy;
+import com.sf.carrier.CarrierApplication;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.RequirementAdapter;
 import com.sf.contacts.domain.Requirement;
-import com.sf.contacts.domain.Vehicle;
 
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
-import static java.util.Arrays.asList;
+import java.util.Map;
 
 public class UnScheduleActivity extends NavigationActivity {
 
@@ -32,16 +31,21 @@ public class UnScheduleActivity extends NavigationActivity {
     }
 
     private void requestRequirement() {
-        new AsyncTask<Void, Void, List<Requirement>>() {
+        CarrierApplication application = (CarrierApplication) getApplication();
+        new AsyncTask<String, Void, List<Requirement>>() {
             @Override
-            protected List doInBackground(Void... params) {
-                return  ConnectionProxy.getInstance().requestRequirements(getBaseContext());
+            protected List<Requirement> doInBackground(String... params) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("carrierId", params[0]);
+                map.put("status", params[1]);
+                return ConnectionProxy.getInstance().requestRequirements(getApplicationContext(), map);
             }
+
             @Override
-            protected void onPostExecute(List<Requirement> requirements) {
-                adapter.setItems(requirements);
+            protected void onPostExecute(List<Requirement> requirementList) {
+                adapter.setItems(requirementList);
             }
-        }.execute();
+        }.execute(String.valueOf(application.getCarrierId()), "1");
     }
 
     private void initListView() {
