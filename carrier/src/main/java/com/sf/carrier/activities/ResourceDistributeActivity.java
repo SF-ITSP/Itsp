@@ -4,10 +4,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.sf.app.library.connectivity.ConnectionProxy;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.DriverViewAdapter;
+import com.sf.carrier.views.fragments.AssignDriverDialogFragment;
 import com.sf.contacts.domain.Driver;
 
 import java.util.List;
@@ -48,6 +50,14 @@ public class ResourceDistributeActivity extends NavigationActivity {
 
         driverAdapter = new DriverViewAdapter(getApplicationContext());
         driverRecyclerView.setAdapter(driverAdapter);
+
+        driverAdapter.setOnItemClickLitener(new DriverViewAdapter.OnItemClickLitener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                AssignDriverDialogFragment assignDriverDialogFragment = new AssignDriverDialogFragment();
+                assignDriverDialogFragment.show(getFragmentManager(), "assign driver");
+            }
+        });
     }
 
     @Override
