@@ -5,15 +5,15 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sf.carrier.R;
 import com.sf.app.library.adapters.ItspBaseAdapter;
+import com.sf.carrier.R;
 import com.sf.carrier.activities.UnScheduleActivity;
 import com.sf.carrier.views.fragments.TaskSelectionItemView;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static com.sf.carrier.adapters.TaskListViewAdapter.TaskTypeSelection.toList;
+import static java.util.Arrays.asList;
 
 public class TaskListViewAdapter extends ItspBaseAdapter {
     public TaskListViewAdapter(Context context) {
@@ -48,7 +48,7 @@ public class TaskListViewAdapter extends ItspBaseAdapter {
         }
 
         public static List toList() {
-            return Arrays.asList(Unscheduled, Executing, Pending);
+            return asList(Unscheduled, Executing, Pending);
         }
     }
 }

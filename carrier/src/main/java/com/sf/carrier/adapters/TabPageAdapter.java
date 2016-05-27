@@ -1,5 +1,6 @@
 package com.sf.carrier.adapters;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -7,8 +8,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.sf.carrier.views.TabType;
 
 public class TabPageAdapter extends FragmentPagerAdapter {
-    public TabPageAdapter(FragmentManager fragmentManager) {
+    private Context context;
+
+    public TabPageAdapter(FragmentManager fragmentManager, Context context) {
         super(fragmentManager);
+        this.context = context;
     }
 
     @Override
@@ -23,7 +27,7 @@ public class TabPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return tabTypes()[position].title;
+        return context.getString(tabTypes()[position].titleResId);
     }
 
     private TabType[] tabTypes() {

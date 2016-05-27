@@ -8,4 +8,7 @@
     <string name="resource_distribute">任务指派</string>
     <string name="driver_tip">请选择合适的司机</string>
     <string name="capacity_weight_unit">吨</string>
+    <string name="requirement_market">需求市场</string>
+    <string name="my_task">我的任务</string>
+    <string name="settings">设置</string>
 </resources>
