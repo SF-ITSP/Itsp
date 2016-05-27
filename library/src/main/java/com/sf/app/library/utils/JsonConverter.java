@@ -22,7 +22,7 @@ public class JsonConverter {
 
     private static Gson getGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
+        gsonBuilder.setDateFormat("S");
         return gsonBuilder.create();
     }
 

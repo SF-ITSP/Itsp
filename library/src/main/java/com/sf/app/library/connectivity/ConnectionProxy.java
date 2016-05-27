@@ -12,6 +12,7 @@ import com.sf.contacts.domain.Task;
 import com.sf.contacts.domain.Vehicle;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Requirements;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Tasks;
@@ -32,45 +33,70 @@ public class ConnectionProxy {
 
     }
 
-    public List<Task> requestTask(Context context) {
-        return (List<Task>) Tasks.request(context);
+    public List<Task> requestTask(Context context, Map<String, String> parameter) {
+        return (List<Task>) Tasks.request(context, parameter);
     }
 
-    public List<Vehicle> requestVehicle(Context context) {
-        return (List<Vehicle>) Vehicles.request(context);
+    public List<Vehicle> requestVehicle(Context context, Map<String, String> parameter) {
+        return (List<Vehicle>) Vehicles.request(context, parameter);
     }
 
-    public List<Requirement> requestRequirements(Context context) {
-        return (List<Requirement>) Requirements.request(context);
+    public List<Requirement> requestRequirements(Context context, Map<String, String> parameter) {
+        return (List<Requirement>) Requirements.request(context, parameter);
     }
 
-    public List<Driver> requestDrivers(Context context) {
-        return (List<Driver>) Drivers.request(context);
+    public List<Driver> requestDrivers(Context context, Map<String, String> parameter) {
+        return (List<Driver>) Drivers.request(context, parameter);
     }
 
     public enum RequestPath {
-        Tasks("tasks", Task[].class),
-        Vehicles("vehicles", Vehicle[].class),
-        Requirements("requirements", Requirement[].class),
-        Drivers("drivers", Driver[].class);
+        Drivers("drivers", Driver[].class) {
+            @Override
+            public String constructParameter(Map<String, String> parameter) {
+                return "";
+            }
+        },
+        Tasks("tasks", Task[].class) {
+            @Override
+            public String constructParameter(Map<String, String> parameter) {
+                return "";
+            }
+        },
+        Vehicles("vehicles", Vehicle[].class) {
+            @Override
+            public String constructParameter(Map<String, String> parameter) {
+                return "";
+            }
+        },
+        Requirements("requirement", Requirement[].class) {
+            @Override
+            public String constructParameter(Map<String, String> parameter) {
+                return "/" + parameter.get("carrierId") + "/" + parameter.get("status");
+            }
+        };
 
-        private final String path;
+        private final String resource;
         private final TypeToken typeToken;
 
-        RequestPath(String path, Class clazz) {
-            this.path = path;
+        RequestPath(String resource, Class clazz) {
+            this.resource = resource;
             this.typeToken = TypeToken.get(clazz);
         }
 
-        public List<?> request(Context context) {
+        public List<?> request(Context context, Map<String, String> parameter) {
             ServerAddress serverAddress = PropertiesProvider.getInstance(context).getServerAddress();
-            String request = new HttpClient(serverAddress.host).request(path);
-
+            String request = new HttpClient(serverAddress.host).request(getPath(parameter));
             return convert(request);
         }
 
         public List<?> convert(String dataAsJson) {
             return JsonConverter.jsonFromObjectList(dataAsJson, typeToken);
         }
+
+        public String getPath(Map<String, String> parameter) {
+            return this.resource + constructParameter(parameter);
+        }
+
+        public abstract String constructParameter(Map<String, String> parameter);
     }
 }

@@ -31,7 +31,7 @@ public class ResourceDistributeActivity extends NavigationActivity {
         new AsyncTask<Void, Void, List<Driver>>() {
             @Override
             protected List<Driver> doInBackground(Void... params) {
-                return ConnectionProxy.getInstance().requestDrivers(getApplicationContext());
+                return ConnectionProxy.getInstance().requestDrivers(getApplicationContext(), null);
             }
 
             @Override
