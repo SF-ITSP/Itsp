@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/dialogBackground">
 
     <TextView
@@ -115,17 +115,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/assign_driver_info"
+        android:layout_marginBottom="8dp"
         android:gravity="center_horizontal">
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:padding="8dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/assign_main_driver_button_background"
+            android:textSize="@dimen/assign_driver_button_text_size"
+            android:textColor="#fff"
             android:text="@string/assign_main_driver_button_text" />
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@drawable/assign_copilot_button_background"
+            android:textSize="@dimen/assign_driver_button_text_size"
+            android:textColor="@color/assignDriverButton"
             android:text="@string/assign_copilot_button_text" />
     </LinearLayout>
 </RelativeLayout>
