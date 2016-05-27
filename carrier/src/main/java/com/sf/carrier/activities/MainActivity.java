@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.widget.Toast;
 
-import com.sf.CarrierApplication;
+import com.sf.carrier.CarrierApplication;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.TabPageAdapter;
 import com.viewpagerindicator.TabPageIndicator;

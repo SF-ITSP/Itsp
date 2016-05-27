@@ -57,7 +57,7 @@ public class TaskFragment extends Fragment {
         new AsyncTask<Void, Void, List<Task>>() {
             @Override
             protected List<Task> doInBackground(Void... params) {
-                return ConnectionProxy.getInstance().requestTask(getActivity().getApplicationContext());
+                return ConnectionProxy.getInstance().requestTask(getActivity().getApplicationContext(), null);
             }
 
             @Override
@@ -71,7 +71,7 @@ public class TaskFragment extends Fragment {
         new AsyncTask<Void, Void, List<Vehicle>>() {
             @Override
             protected List<Vehicle> doInBackground(Void... params) {
-                return ConnectionProxy.getInstance().requestVehicle(getActivity().getApplicationContext());
+                return ConnectionProxy.getInstance().requestVehicle(getActivity().getApplicationContext(), null);
             }
 
             @Override

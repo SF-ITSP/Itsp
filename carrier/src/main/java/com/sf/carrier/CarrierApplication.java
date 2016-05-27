@@ -1,4 +1,4 @@
-package com.sf;
+package com.sf.carrier;
 
 import android.app.Application;
 

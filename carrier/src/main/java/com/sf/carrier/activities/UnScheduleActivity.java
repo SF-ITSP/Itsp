@@ -1,19 +1,22 @@
 package com.sf.carrier.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.sf.carrier.CarrierApplication;
+import com.sf.app.library.connectivity.ConnectionProxy;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.RequirementAdapter;
 import com.sf.contacts.domain.Requirement;
 
-import java.util.Date;
-
-import static java.util.Arrays.asList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class UnScheduleActivity extends NavigationActivity {
 
@@ -28,16 +31,21 @@ public class UnScheduleActivity extends NavigationActivity {
     }
 
     private void requestRequirement() {
-        Requirement requirement = new Requirement();
-        requirement.setEndDate(new Date());
-        requirement.setStartDate(new Date());
+        CarrierApplication application = (CarrierApplication) getApplication();
+        new AsyncTask<String, Void, List<Requirement>>() {
+            @Override
+            protected List<Requirement> doInBackground(String... params) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("carrierId", params[0]);
+                map.put("status", params[1]);
+                return ConnectionProxy.getInstance().requestRequirements(getApplicationContext(), map);
+            }
 
-        /**
-         * @TODO: will fix this issue when request server, because it make a crash
-         */
-//        List<Requirement> requirements = ConnectionProxy.getInstance().requestRequirements(getBaseContext());
-
-        adapter.setItems(asList(requirement));
+            @Override
+            protected void onPostExecute(List<Requirement> requirementList) {
+                adapter.setItems(requirementList);
+            }
+        }.execute(String.valueOf(application.getCarrierId()), "1");
     }
 
     private void initListView() {
