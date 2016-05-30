@@ -13,10 +13,10 @@ import com.sf.carrier.R;
 import com.sf.carrier.activities.UnScheduleActivity;
 import com.sf.carrier.views.fragments.TaskSelectionItemView;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static com.sf.carrier.adapters.TaskListViewAdapter.TaskTypeSelection.toList;
+import static java.util.Arrays.asList;
 
 public class TaskListViewAdapter extends ItspBaseAdapter {
     public TaskListViewAdapter(Context context) {
@@ -44,15 +44,13 @@ public class TaskListViewAdapter extends ItspBaseAdapter {
         public static final int indicator = R.drawable.arrow;
         public final Class clazz;
 
-        private boolean isOpening;
-
         TaskTypeSelection(int icon, int title, Class clazz) {
             this.icon = icon;
             this.title = title;
             this.clazz = clazz;
         }
 
-        public synchronized void startActivity(Context context) {
+        public void startActivity(Context context) {
             ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
             String runningActivity = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
             if (!runningActivity.equals(clazz.getName())) {
@@ -63,7 +61,7 @@ public class TaskListViewAdapter extends ItspBaseAdapter {
         }
 
         public static List toList() {
-            return Arrays.asList(Unscheduled, Executing, Pending);
+            return asList(Unscheduled, Executing, Pending);
         }
     }
 }

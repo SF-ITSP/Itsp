@@ -15,5 +15,9 @@
     <string name="driver_age">年龄</string>
     <string name="driving_experience">驾龄</string>
     <string name="capacity_weight_unit">吨</string>
+    <string name="requirement_market">需求市场</string>
+    <string name="my_task">我的任务</string>
+    <string name="settings">设置</string>
     <string name="vehicle_tip">选择合适的车辆</string>
+
 </resources>

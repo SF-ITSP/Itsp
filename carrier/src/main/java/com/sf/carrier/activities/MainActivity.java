@@ -19,7 +19,7 @@ public class MainActivity extends FragmentActivity {
         TabPageIndicator indicatorView = (TabPageIndicator) findViewById(R.id.indicator_view);
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
 
-        viewPager.setAdapter(new TabPageAdapter(getSupportFragmentManager()));
+        viewPager.setAdapter(new TabPageAdapter(getSupportFragmentManager(), getApplicationContext()));
         indicatorView.setViewPager(viewPager);
 
         CarrierApplication application = (CarrierApplication) getApplication();

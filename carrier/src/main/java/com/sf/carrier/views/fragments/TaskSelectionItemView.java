@@ -15,6 +15,7 @@ public class TaskSelectionItemView extends LinearLayout {
     private ImageView headerIcon;
     private TextView titleView;
     private ImageView indicatorView;
+    private TextView assistantView;
 
     public TaskSelectionItemView(Context context) {
         super(context);
@@ -38,11 +39,16 @@ public class TaskSelectionItemView extends LinearLayout {
         headerIcon = (ImageView) inflate.findViewById(R.id.header_icon);
         titleView = (TextView) inflate.findViewById(R.id.title_view);
         indicatorView = (ImageView) inflate.findViewById(R.id.right_indicator);
+        assistantView = (TextView) inflate.findViewById(R.id.assistant_view);
     }
 
     public void setModel(TaskListViewAdapter.TaskTypeSelection selection) {
         headerIcon.setImageResource(selection.icon);
         titleView.setText(selection.title);
-        indicatorView.setImageResource(selection.indicator);
+        indicatorView.setImageResource(TaskListViewAdapter.TaskTypeSelection.indicator);
+    }
+
+    public void showAssistant(String assistant) {
+        assistantView.setText(assistant);
     }
 }
