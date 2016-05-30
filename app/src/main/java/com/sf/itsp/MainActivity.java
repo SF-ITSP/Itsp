@@ -1,14 +1,14 @@
 package com.sf.itsp;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-
-import com.viewpagerindicator.TabPageIndicator;
 
 import com.sf.itsp.adapter.TabPageIndicatorAdapter;
 import com.sf.itsp.fragment.OtherFragment;
 import com.sf.itsp.fragment.TaskFragment;
+import com.viewpagerindicator.TabPageIndicator;
 
 public class MainActivity extends FragmentActivity {
 
@@ -31,10 +31,33 @@ public class MainActivity extends FragmentActivity {
 
     private TabPageIndicatorAdapter initFragment() {
         TabPageIndicatorAdapter tabpageIndicatorAdapter = new TabPageIndicatorAdapter(getSupportFragmentManager());
-        TaskFragment taskFragment = new TaskFragment();
-        OtherFragment testFragment = new OtherFragment();
-        tabpageIndicatorAdapter.addFragment("执行任务", taskFragment);
-        tabpageIndicatorAdapter.addFragment("其他", testFragment);
+
+        for (TabType tabType : TabType.values()) {
+            tabpageIndicatorAdapter.addFragment(getString(tabType.titleResId), tabType.generateFragment());
+        }
+
         return tabpageIndicatorAdapter;
+    }
+
+    public enum TabType {
+        Task(R.string.task_execute) {
+            @Override
+            public Fragment generateFragment() {
+                return new TaskFragment();
+            }
+        }, Settings(R.string.settings) {
+            @Override
+            public Fragment generateFragment() {
+                return new OtherFragment();
+            }
+        };
+
+        public final int titleResId;
+
+        TabType(int titleResId) {
+            this.titleResId = titleResId;
+        }
+
+        public abstract Fragment generateFragment();
     }
 }
