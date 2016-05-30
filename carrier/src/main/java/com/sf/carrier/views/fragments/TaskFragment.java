@@ -1,6 +1,5 @@
 package com.sf.carrier.views.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,8 +25,7 @@ public class TaskFragment extends Fragment {
         taskListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), values()[position].clazz);
-                startActivity(intent);
+                values()[position].startActivity(getActivity().getApplicationContext());
             }
         });
         taskListView.setAdapter(adapter);

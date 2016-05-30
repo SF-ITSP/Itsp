@@ -7,8 +7,17 @@
     <string name="end_time">计划结束:</string>
     <string name="resource_distribute">任务指派</string>
     <string name="driver_tip">请选择合适的司机</string>
+    <string name="driver_assign_dialog_title">司机详细信息:</string>
+    <string name="assign_main_driver_button_text">设为主驾</string>
+    <string name="assign_copilot_button_text">设为副驾</string>
+    <string name="assign_driver_name">姓名</string>
+    <string name="driving_license_type">驾照类型</string>
+    <string name="driver_age">年龄</string>
+    <string name="driving_experience">驾龄</string>
     <string name="capacity_weight_unit">吨</string>
     <string name="requirement_market">需求市场</string>
     <string name="my_task">我的任务</string>
     <string name="settings">设置</string>
+    <string name="vehicle_tip">选择合适的车辆</string>
+
 </resources>

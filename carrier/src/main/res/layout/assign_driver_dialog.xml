@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp"
+    android:background="@color/dialogBackground">
+
+    <TextView
+        android:id="@+id/driver_assign_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textSize="@dimen/assign_driver_title_text_size"
+        android:text="@string/driver_assign_dialog_title" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/driver_assign_dialog_title"
+        android:layout_marginBottom="8dp"
+        android:background="@color/divider_color" />
+
+    <LinearLayout
+        android:id="@+id/assign_driver_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider">
+
+        <com.sf.carrier.views.RoundImage
+            android:id="@+id/assign_driver_image"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/sets"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/gray_text"
+                android:text="@string/assign_driver_name" />
+
+            <TextView
+                android:id="@+id/name_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_toRightOf="@id/name"
+                android:layout_alignBottom="@id/name"/>
+
+            <TextView
+                android:id="@+id/driving_license_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="15dp"
+                android:layout_toRightOf="@id/name_value"
+                android:textColor="@color/gray_text"
+                android:text="@string/driving_license_type" />
+
+            <TextView
+                android:id="@+id/driving_license_type_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/driving_license_type"
+                android:layout_alignBottom="@id/driving_license_type"/>
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/name"
+                android:layout_below="@id/name"
+                android:layout_alignBottom="@id/age"
+                android:textColor="@color/gray_text"
+                android:text="@string/driver_age" />
+
+            <TextView
+                android:id="@+id/age_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_alignLeft="@id/name_value"
+                android:layout_below="@id/name_value"
+                android:layout_toRightOf="@id/age" />
+
+            <TextView
+                android:id="@+id/driving_experience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/driving_license_type"
+                android:layout_below="@id/driving_license_type"
+                android:layout_toRightOf="@id/age_value"
+                android:textColor="@color/gray_text"
+                android:text="@string/driving_experience" />
+
+            <TextView
+                android:id="@+id/driving_experience_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_alignLeft="@id/driving_license_type_value"
+                android:layout_below="@id/driving_license_type_value"
+                android:layout_toRightOf="@id/driving_experience"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/assign_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/assign_driver_info"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/assign_main_driver_button_background"
+            android:textSize="@dimen/assign_driver_button_text_size"
+            android:textColor="#fff"
+            android:text="@string/assign_main_driver_button_text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@drawable/assign_copilot_button_background"
+            android:textSize="@dimen/assign_driver_button_text_size"
+            android:textColor="@color/assignDriverButton"
+            android:text="@string/assign_copilot_button_text" />
+    </LinearLayout>
+</RelativeLayout>

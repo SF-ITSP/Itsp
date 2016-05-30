@@ -1,27 +1,33 @@
 package com.sf.contacts.domain;
 
 public class Driver {
-    private int driverImageId;
+    private int imageId;
 
-    private String driverName;
+    private String name;
 
-    private String licensePlateGrade;
+    private String drivingLicenseType;
 
-    private int driverAge;
+    private int age;
 
-    public int getDriverImageId() {
-        return driverImageId;
+    private int drivingExperience;
+
+    public int getImageId() {
+        return imageId;
     }
 
-    public String getDriverName() {
-        return driverName;
+    public String getName() {
+        return name;
     }
 
-    public String getLicensePlateGrade() {
-        return licensePlateGrade;
+    public String getDrivingLicenseType() {
+        return drivingLicenseType;
     }
 
-    public int getDriverAge() {
-        return driverAge;
+    public int getAge() {
+        return age;
+    }
+
+    public int getDrivingExperience() {
+        return drivingExperience;
     }
 }
