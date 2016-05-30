@@ -44,15 +44,13 @@ public class TaskListViewAdapter extends ItspBaseAdapter {
         public static final int indicator = R.drawable.arrow;
         public final Class clazz;
 
-        private boolean isOpening;
-
         TaskTypeSelection(int icon, int title, Class clazz) {
             this.icon = icon;
             this.title = title;
             this.clazz = clazz;
         }
 
-        public synchronized void startActivity(Context context) {
+        public void startActivity(Context context) {
             ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
             String runningActivity = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
             if (!runningActivity.equals(clazz.getName())) {
