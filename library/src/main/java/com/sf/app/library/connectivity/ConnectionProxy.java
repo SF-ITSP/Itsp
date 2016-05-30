@@ -18,6 +18,7 @@ import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Requir
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Tasks;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Vehicles;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Drivers;
+import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Driver;
 
 public class ConnectionProxy {
     private static ConnectionProxy instance;
@@ -49,11 +50,15 @@ public class ConnectionProxy {
         return (List<Driver>) Drivers.request(context, parameter);
     }
 
+    public List<Driver> requestDriverById(Context context, Map<String, String> parameter) {
+        return (List<Driver>) Driver.request(context, parameter);
+    }
+
     public enum RequestPath {
         Drivers("drivers", Driver[].class) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
-                return "/" + parameter.get("carrierId");
+                return "/carrier/" + parameter.get("carrierId");
             }
         },
         Tasks("tasks", Task[].class) {
@@ -72,6 +77,12 @@ public class ConnectionProxy {
             @Override
             public String constructParameter(Map<String, String> parameter) {
                 return "/" + parameter.get("carrierId") + "/" + parameter.get("status");
+            }
+        },
+        Driver("drivers", Driver[].class) {
+            @Override
+            public String constructParameter(Map<String, String> parameter) {
+                return "/" + parameter.get("driverId");
             }
         };
 

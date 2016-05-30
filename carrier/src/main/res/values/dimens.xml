@@ -2,8 +2,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="margin_five">5dp</dimen>
+    <dimen name="driver_image_margin">8dp</dimen>
     <dimen name="assign_driver_title_text_size">18sp</dimen>
     <dimen name="assign_driver_button_text_size">20sp</dimen>
-    <dimen name="vehicle_card_text_size">18sp</dimen>
+    <dimen name="vehicle_info_number">18sp</dimen>
+    <dimen name="vehicle_info_weight">14sp</dimen>
+    <dimen name="vehicle_info_type">14sp</dimen>
 </resources>

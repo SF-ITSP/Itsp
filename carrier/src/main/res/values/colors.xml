@@ -10,4 +10,6 @@
     <color name="divider_color">#8b8b8b</color>
     <color name="task_item_selected">#dddddd</color>
     <color name="assignDriverButton">#25c428</color>
+    <color name="vehicle_info_text">#FFF</color>
+    <color name="tips_background">#b1b1b1</color>
 </resources>

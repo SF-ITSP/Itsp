@@ -7,9 +7,9 @@
         android:id="@+id/driver_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_margin="@dimen/margin_five"
-        android:scaleType="centerCrop"
-        android:src="@drawable/sets" />
+        android:layout_marginLeft="@dimen/driver_image_margin"
+        android:layout_marginRight="@dimen/driver_image_margin"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/driver_name"
@@ -36,11 +36,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="岁" />
     </LinearLayout>
 </RelativeLayout>
