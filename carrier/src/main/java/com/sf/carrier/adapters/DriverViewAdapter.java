@@ -29,10 +29,10 @@ public class DriverViewAdapter extends RecyclerView.Adapter<DriverViewAdapter.Vi
             super(itemView);
         }
 
-        public ImageView driverImage;
-        public TextView driverName;
-//        public TextView licensePlateGrade;
-//        public TextView driverAge;
+        public ImageView imageId;
+        public TextView name;
+        public TextView drivingLicenseType;
+        public TextView age;
     }
 
     public interface OnItemClickLitener {
@@ -53,20 +53,20 @@ public class DriverViewAdapter extends RecyclerView.Adapter<DriverViewAdapter.Vi
         View view = inflater.inflate(R.layout.driver_item_view, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
-        viewHolder.driverImage = (ImageView) view.findViewById(R.id.driver_image);
-        viewHolder.driverName = (TextView) view.findViewById(R.id.driver_name);
-//        viewHolder.licensePlateGrade = (TextView) view.findViewById(R.id.license_plate_grade);
-//        viewHolder.driverAge = (TextView) view.findViewById(R.id.driver_age);
+        viewHolder.imageId = (ImageView) view.findViewById(R.id.driver_image);
+        viewHolder.name = (TextView) view.findViewById(R.id.driver_name);
+        viewHolder.drivingLicenseType = (TextView) view.findViewById(R.id.driver_driving_license_type);
+        viewHolder.age = (TextView) view.findViewById(R.id.driver_age);
 
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
-        viewHolder.driverImage.setImageResource(driverList.get(position).getImageId());
-        viewHolder.driverName.setText(driverList.get(position).getName());
-//        viewHolder.licensePlateGrade.setText(driverList.get(i).getLicensePlateGrade());
-//        viewHolder.driverAge.setText(driverList.get(i).getDriverAge());
+        viewHolder.imageId.setImageResource(driverList.get(position).getImageId());
+        viewHolder.name.setText(driverList.get(position).getName());
+        viewHolder.drivingLicenseType.setText(driverList.get(position).getDrivingLicenseType() + ",");
+        viewHolder.age.setText(String.valueOf(driverList.get(position).getAge()));
 
         if (mOnItemClickLitener != null) {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -20,6 +20,19 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/driver_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="200dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_text"
+        android:text="@string/vehicle_tip" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/vehicle_list"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+
 
 </LinearLayout>

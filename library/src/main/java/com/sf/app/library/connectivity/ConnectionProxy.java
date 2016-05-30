@@ -65,7 +65,7 @@ public class ConnectionProxy {
         Vehicles("vehicles", Vehicle[].class) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
-                return "";
+                return "/" + parameter.get("carrierId");
             }
         },
         Requirements("requirement", Requirement[].class) {

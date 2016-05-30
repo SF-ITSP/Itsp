@@ -5,16 +5,11 @@ public class Driver {
 
     private String name;
 
-    private String drivinglicenseType;
+    private String drivingLicenseType;
 
     private int age;
 
     private int drivingExperience;
-
-    public Driver(int imageId, String name) {
-        this.imageId = imageId;
-        this.name = name;
-    }
 
     public int getImageId() {
         return imageId;
@@ -24,8 +19,8 @@ public class Driver {
         return name;
     }
 
-    public String getDrivinglicenseType() {
-        return drivinglicenseType;
+    public String getDrivingLicenseType() {
+        return drivingLicenseType;
     }
 
     public int getAge() {

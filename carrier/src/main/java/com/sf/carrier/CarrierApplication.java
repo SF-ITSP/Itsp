@@ -5,6 +5,7 @@ import android.app.Application;
 public class CarrierApplication extends Application {
 
     private long carrierId;
+    private long driverId;
 
     {
         carrierId = 888;
@@ -21,5 +22,9 @@ public class CarrierApplication extends Application {
 
     public void setCarrierId(long carrierId) {
         this.carrierId = carrierId;
+    }
+
+    public long getDriverId() {
+        return driverId;
     }
 }
