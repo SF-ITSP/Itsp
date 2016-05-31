@@ -3,6 +3,7 @@ package com.sf.app.library.connectivity;
 import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
+import com.sf.app.library.domain.DriverTask;
 import com.sf.app.library.domain.ServerAddress;
 import com.sf.app.library.utils.JsonConverter;
 import com.sf.app.library.utils.PropertiesProvider;
@@ -14,11 +15,13 @@ import com.sf.contacts.domain.Vehicle;
 import java.util.List;
 import java.util.Map;
 
+import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Driver;
+import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.DriverTasks;
+import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Drivers;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Requirements;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Tasks;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Vehicles;
-import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Drivers;
-import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Driver;
+
 
 public class ConnectionProxy {
     private static ConnectionProxy instance;
@@ -54,6 +57,10 @@ public class ConnectionProxy {
         return (List<Driver>) Driver.request(context, parameter);
     }
 
+    public List<DriverTask> requestDriverTasks(Context context, Map<String, String> parameter) {
+        return (List<DriverTask>) DriverTasks.request(context, parameter);
+    }
+
     public enum RequestPath {
         Drivers("drivers", Driver[].class) {
             @Override
@@ -83,6 +90,11 @@ public class ConnectionProxy {
             @Override
             public String constructParameter(Map<String, String> parameter) {
                 return "/" + parameter.get("driverId");
+            }
+        }, DriverTasks("driverTask", DriverTask[].class) {
+            @Override
+            public String constructParameter(Map<String, String> parameter) {
+                return "";
             }
         };
 

@@ -3,4 +3,5 @@
     <string name="title_task">任务</string>
     <string name="task_execute">我的任务</string>
     <string name="settings">设置</string>
+    <string name="un_complete_task_count">未完结的任务%s条</string>
 </resources>

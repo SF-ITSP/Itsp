@@ -10,17 +10,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sf.app.library.connectivity.ConnectionProxy;
-import com.sf.contacts.domain.Task;
-import com.sf.contacts.domain.Vehicle;
+import com.sf.app.library.domain.DriverTask;
 import com.sf.itsp.R;
-import com.sf.itsp.tasks.TaskAdapter;
+import com.sf.itsp.tasks.DriverTaskAdapter;
 
 import java.util.List;
 
 public class TaskFragment extends Fragment {
     private TextView vehicleNumber;
 
-    private TaskAdapter taskAdapter;
+    private DriverTaskAdapter driverTaskAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,45 +36,30 @@ public class TaskFragment extends Fragment {
     }
 
     private void initTaskListView(View view) {
-        taskAdapter = new TaskAdapter(getActivity().getApplicationContext());
-        ListView listView = (ListView) view.findViewById(R.id.task_list);
-        listView.setAdapter(taskAdapter);
+        driverTaskAdapter = new DriverTaskAdapter(getActivity().getApplicationContext());
+        ListView listView = (ListView) view.findViewById(R.id.task_list_view);
+        listView.setAdapter(driverTaskAdapter);
     }
 
     private void initMissionInfoView(View view) {
-        vehicleNumber = (TextView) view.findViewById(R.id.vehicle_number);
+        vehicleNumber = (TextView) view.findViewById(R.id.vehicle_number_view);
     }
 
     public void initData() {
-        initMissionInfo();
-
         initTaskList();
     }
 
     private void initTaskList() {
-        new AsyncTask<Void, Void, List<Task>>() {
+        new AsyncTask<Void, Void, List<DriverTask>>() {
             @Override
-            protected List<Task> doInBackground(Void... params) {
-                return ConnectionProxy.getInstance().requestTask(getActivity().getApplicationContext(), null);
+            protected List<DriverTask> doInBackground(Void... params) {
+                //Task task = new Task("地址", "1", "12:00", "10:00", 1, "1");
+                return ConnectionProxy.getInstance().requestDriverTasks(getActivity().getApplicationContext(), null);
             }
 
             @Override
-            protected void onPostExecute(List<Task> tasks) {
-                taskAdapter.setItems(tasks);
-            }
-        }.execute();
-    }
-
-    private void initMissionInfo() {
-        new AsyncTask<Void, Void, List<Vehicle>>() {
-            @Override
-            protected List<Vehicle> doInBackground(Void... params) {
-                return ConnectionProxy.getInstance().requestVehicle(getActivity().getApplicationContext(), null);
-            }
-
-            @Override
-            protected void onPostExecute(List<Vehicle> vehicles) {
-                vehicleNumber.setText(vehicles.get(0).getVehicleNumber());
+            protected void onPostExecute(List<DriverTask> driverTask) {
+                driverTaskAdapter.setItems(driverTask);
             }
         }.execute();
     }

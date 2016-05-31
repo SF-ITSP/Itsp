@@ -38,7 +38,7 @@ public class TaskFragmentTest {
         SupportFragmentTestUtil.startFragment(taskFragment);
 
         //when
-        ListView listView = (ListView) taskFragment.getView().findViewById(R.id.task_list);
+        ListView listView = null;//(ListView) taskFragment.getView().findViewById(R.id.task_list);
         runBackgroundTasks();
 
         //then
@@ -70,7 +70,7 @@ public class TaskFragmentTest {
 
         //when
         SupportFragmentTestUtil.startFragment(taskFragment);
-        TextView vehicleNumber = (TextView) taskFragment.getView().findViewById(R.id.vehicle_number);
+        TextView vehicleNumber = (TextView) taskFragment.getView().findViewById(R.id.vehicle_number_view);
         runBackgroundTasks();
 
         //then
