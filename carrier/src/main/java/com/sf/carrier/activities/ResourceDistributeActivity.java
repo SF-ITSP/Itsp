@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.sf.app.library.connectivity.ConnectionProxy;
 import com.sf.carrier.R;
@@ -49,6 +50,13 @@ public class ResourceDistributeActivity extends NavigationActivity {
 
         vehicleAdapter = new VehicleViewAdapter(getApplicationContext());
         vehicleRecyclerView.setAdapter(vehicleAdapter);
+
+        vehicleAdapter.setOnItemClickListener(new VehicleViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ((ImageView) findViewById(R.id.has_selected)).setImageResource(R.drawable.selected);
+            }
+        });
     }
 
     private void initDriverListView() {

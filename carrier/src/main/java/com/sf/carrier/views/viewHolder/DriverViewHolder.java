@@ -27,7 +27,7 @@ public class DriverViewHolder extends RecyclerView.ViewHolder {
         ageTextValue = (TextView) view.findViewById(R.id.driver_age);
     }
 
-    public void initData(List<Driver> driverList, int position){
+    public void initData(List<Driver> driverList, int position) {
         imageId.setImageResource(R.drawable.user);
         nameTextValue.setText(driverList.get(position).getName());
         drivingLicenseTypeTextValue.setText(driverList.get(position).getDrivingLicenseType() + ",");

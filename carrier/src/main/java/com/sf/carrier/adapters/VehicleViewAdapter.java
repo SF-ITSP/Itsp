@@ -17,9 +17,18 @@ public class VehicleViewAdapter extends RecyclerView.Adapter<VehicleViewHolder> 
 
     private LayoutInflater inflater;
     private List<Vehicle> vehicleList = new ArrayList<Vehicle>();
+    private OnItemClickListener mOnItemClickListener;
 
     public VehicleViewAdapter(Context context) {
         inflater = LayoutInflater.from(context);
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 
     @Override
@@ -40,6 +49,15 @@ public class VehicleViewAdapter extends RecyclerView.Adapter<VehicleViewHolder> 
     @Override
     public void onBindViewHolder(final VehicleViewHolder viewHolder, final int position) {
         viewHolder.initData(vehicleList, position);
+
+        if (mOnItemClickListener != null) {
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onItemClick(viewHolder.itemView, position);
+                }
+            });
+        }
     }
 
     public void setVehicleList(List<Vehicle> vehicleList) {

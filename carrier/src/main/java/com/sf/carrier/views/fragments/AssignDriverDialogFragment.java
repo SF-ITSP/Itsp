@@ -1,6 +1,7 @@
 package com.sf.carrier.views.fragments;
 
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.sf.app.library.connectivity.ConnectionProxy;
 import com.sf.carrier.CarrierApplication;
 import com.sf.carrier.R;
+import com.sf.carrier.activities.ResourceDistributeActivity;
 import com.sf.contacts.domain.Driver;
 
 import java.util.HashMap;
@@ -26,16 +28,29 @@ public class AssignDriverDialogFragment extends DialogFragment {
     private TextView ageTextValue;
     private TextView drivingExperienceTextValue;
 
+    private TextView assignMainDriverButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.assign_driver_dialog, container);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        driverImage = (ImageView) view.findViewById(R.id.driver_image);
+        driverImage = (ImageView) view.findViewById(R.id.assign_driver_image);
         nameTextValue = (TextView) view.findViewById(R.id.name_value);
         drivingLicenseTypeTextValue = (TextView) view.findViewById(R.id.driving_license_type_value);
         ageTextValue = (TextView) view.findViewById(R.id.age_value);
         drivingExperienceTextValue = (TextView) view.findViewById(R.id.driving_experience_value);
+
+        assignMainDriverButton = (TextView) view.findViewById(R.id.assign_main_driver);
+
+        assignMainDriverButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ResourceDistributeActivity resourceDistributeActivity = (ResourceDistributeActivity) getActivity();
+                ((ImageView)resourceDistributeActivity.findViewById(R.id.is_main_driver)).setImageResource(R.drawable.selected);
+                dismiss();
+            }
+        });
 
         return view;
     }
@@ -66,5 +81,10 @@ public class AssignDriverDialogFragment extends DialogFragment {
         drivingLicenseTypeTextValue.setText(driver.getDrivingLicenseType());
         ageTextValue.setText(String.valueOf(driver.getAge()));
         drivingExperienceTextValue.setText(String.valueOf(driver.getDrivingExperience()));
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
     }
 }

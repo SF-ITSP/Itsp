@@ -14,7 +14,7 @@ public class VehicleViewHolder extends RecyclerView.ViewHolder {
     private TextView vehicleNumberTextValue;
     private TextView weightTextValue;
     private TextView vehicleTypeTextValue;
-    private ImageView hasSelectedImage;
+    public ImageView hasSelectedImage;
 
     public VehicleViewHolder(View itemView) {
         super(itemView);
