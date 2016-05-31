@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.sf.app.library.connectivity.ConnectionProxy;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.DriverViewAdapter;
+import com.sf.carrier.adapters.DriverViewAdapter.OnItemClickListener;
 import com.sf.carrier.adapters.VehicleViewAdapter;
 import com.sf.carrier.views.fragments.AssignDriverDialogFragment;
 import com.sf.contacts.domain.Driver;
@@ -18,6 +19,8 @@ import com.sf.contacts.domain.Vehicle;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.sf.carrier.views.fragments.AssignDriverDialogFragment.ASSIGN_DRIVER_TAG;
 
 public class ResourceDistributeActivity extends NavigationActivity {
     private RecyclerView driverRecyclerView;
@@ -66,19 +69,15 @@ public class ResourceDistributeActivity extends NavigationActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         driverRecyclerView.setLayoutManager(linearLayoutManager);
 
-        driverAdapter = new DriverViewAdapter(getApplicationContext());
-        driverRecyclerView.setAdapter(driverAdapter);
-
-        driverAdapter.setOnItemClickListener(new DriverViewAdapter.OnItemClickListener() {
+        driverAdapter = new DriverViewAdapter(getApplicationContext(), new OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(Driver driver) {
                 AssignDriverDialogFragment assignDriverDialogFragment = new AssignDriverDialogFragment();
-
-                assignDriverDialogFragment.getClickedDriverInfo(position);
-
-                assignDriverDialogFragment.show(getFragmentManager(), "Assign Driver");
+                assignDriverDialogFragment.setDriverId(driver.getId());
+                assignDriverDialogFragment.show(getFragmentManager(), ASSIGN_DRIVER_TAG);
             }
         });
+        driverRecyclerView.setAdapter(driverAdapter);
     }
 
     private void initData() {

@@ -17,18 +17,15 @@ public class DriverViewAdapter extends RecyclerView.Adapter<DriverViewHolder> {
 
     private LayoutInflater inflater;
     private List<Driver> driverList = new ArrayList<Driver>();
-    private OnItemClickListener mOnItemClickListener;
+    private final OnItemClickListener onItemClickListener;
 
-    public DriverViewAdapter(Context context) {
+    public DriverViewAdapter(Context context, OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
         inflater = LayoutInflater.from(context);
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
-        this.mOnItemClickListener = mOnItemClickListener;
+        void onItemClick(Driver driver);
     }
 
     @Override
@@ -37,7 +34,7 @@ public class DriverViewAdapter extends RecyclerView.Adapter<DriverViewHolder> {
     }
 
     @Override
-    public DriverViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public DriverViewHolder onCreateViewHolder(ViewGroup viewGroup, final int position) {
         View view = inflater.inflate(R.layout.driver_item_view, viewGroup, false);
         DriverViewHolder viewHolder = new DriverViewHolder(view);
 
@@ -50,14 +47,12 @@ public class DriverViewAdapter extends RecyclerView.Adapter<DriverViewHolder> {
     public void onBindViewHolder(final DriverViewHolder viewHolder, final int position) {
         viewHolder.initData(driverList, position);
 
-        if (mOnItemClickListener != null) {
-            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnItemClickListener.onItemClick(viewHolder.itemView, position);
-                }
-            });
-        }
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(driverList.get(position));
+            }
+        });
     }
 
     public void setDriverList(List<Driver> driverList) {
