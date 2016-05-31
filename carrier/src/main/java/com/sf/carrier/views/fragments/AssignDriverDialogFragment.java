@@ -1,6 +1,7 @@
 package com.sf.carrier.views.fragments;
 
 import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,16 +13,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sf.app.library.connectivity.ConnectionProxy;
-import com.sf.carrier.CarrierApplication;
 import com.sf.carrier.R;
-import com.sf.carrier.activities.ResourceDistributeActivity;
 import com.sf.contacts.domain.Driver;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.String.valueOf;
+
 public class AssignDriverDialogFragment extends DialogFragment {
+    public static final String ASSIGN_DRIVER_TAG = "anyString";
     private ImageView driverImage;
     private TextView nameTextValue;
     private TextView drivingLicenseTypeTextValue;
@@ -29,6 +31,11 @@ public class AssignDriverDialogFragment extends DialogFragment {
     private TextView drivingExperienceTextValue;
 
     private TextView assignMainDriverButton;
+    private long driverId;
+
+    public void setDriverId(long driverId) {
+        this.driverId = driverId;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,17 +44,18 @@ public class AssignDriverDialogFragment extends DialogFragment {
 
         driverImage = (ImageView) view.findViewById(R.id.assign_driver_image);
         nameTextValue = (TextView) view.findViewById(R.id.name_value);
-        drivingLicenseTypeTextValue = (TextView) view.findViewById(R.id.driving_license_type_value);
         ageTextValue = (TextView) view.findViewById(R.id.age_value);
+
+        drivingLicenseTypeTextValue = (TextView) view.findViewById(R.id.driving_license_type_value);
         drivingExperienceTextValue = (TextView) view.findViewById(R.id.driving_experience_value);
 
         assignMainDriverButton = (TextView) view.findViewById(R.id.assign_main_driver);
-
         assignMainDriverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ResourceDistributeActivity resourceDistributeActivity = (ResourceDistributeActivity) getActivity();
-                ((ImageView)resourceDistributeActivity.findViewById(R.id.is_main_driver)).setImageResource(R.drawable.selected);
+                ImageView driverSelectButton = (ImageView) getActivity().findViewById(R.id.is_main_driver);
+                driverSelectButton.setImageResource(R.drawable.selected);
+
                 dismiss();
             }
         });
@@ -55,32 +63,41 @@ public class AssignDriverDialogFragment extends DialogFragment {
         return view;
     }
 
-    public void getClickedDriverInfo(final int position) {
-        CarrierApplication application = new CarrierApplication();
-        application.setDriverId(position + 1);
+    @Override
+    public void show(FragmentManager manager, String tag) {
+        super.show(manager, tag);
+        showDriverDetail();
+    }
 
-        new AsyncTask<String, Void, List<Driver>>() {
-            @Override
-            protected List<Driver> doInBackground(String... params) {
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("driverId", params[0]);
+    private void showDriverDetail() {
+        new QueryDriverAsyncTask().execute(valueOf(driverId));
+    }
 
-                return ConnectionProxy.getInstance().requestDriverById(getActivity().getApplicationContext(), map);
+    private class QueryDriverAsyncTask extends AsyncTask<String, Void, List<Driver>> {
+        @Override
+        protected List<Driver> doInBackground(String... params) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("driverId", params[0]);
+
+            return ConnectionProxy.getInstance().requestDriverById(getActivity().getApplicationContext(), map);
+        }
+
+        @Override
+        protected void onPostExecute(List<Driver> drivers) {
+            if (drivers.isEmpty()) {
+                return;
             }
 
-            @Override
-            protected void onPostExecute(List<Driver> drivers) {
-                initDriverInfo(drivers.get(0));
-            }
-        }.execute(String.valueOf(application.getDriverId()));
+            initDriverInfo(drivers.get(0));
+        }
     }
 
     private void initDriverInfo(Driver driver) {
         driverImage.setImageResource(R.drawable.user);
         nameTextValue.setText(driver.getName());
         drivingLicenseTypeTextValue.setText(driver.getDrivingLicenseType());
-        ageTextValue.setText(String.valueOf(driver.getAge()));
-        drivingExperienceTextValue.setText(String.valueOf(driver.getDrivingExperience()));
+        ageTextValue.setText(valueOf(driver.getAge()));
+        drivingExperienceTextValue.setText(valueOf(driver.getDrivingExperience()));
     }
 
     @Override
