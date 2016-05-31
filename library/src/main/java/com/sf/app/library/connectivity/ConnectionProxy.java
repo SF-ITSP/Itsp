@@ -62,36 +62,42 @@ public class ConnectionProxy {
     }
 
     public enum RequestPath {
-        Drivers("drivers", Driver[].class) {
+        Drivers("drivers", new TypeToken<List<Driver>>() {
+        }) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
                 return "/carrier/" + parameter.get("carrierId");
             }
         },
-        Tasks("tasks", Task[].class) {
+        Tasks("tasks", new TypeToken<List<Task>>() {
+        }) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
                 return "";
             }
         },
-        Vehicles("vehicles", Vehicle[].class) {
+        Vehicles("vehicles", new TypeToken<List<Vehicle>>() {
+        }) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
                 return "/" + parameter.get("carrierId");
             }
         },
-        Requirements("requirement", Requirement[].class) {
+        Requirements("requirement", new TypeToken<List<Requirement>>() {
+        }) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
                 return "/" + parameter.get(CARRIER_ID) + "/" + parameter.get(STATUS);
             }
         },
-        Driver("drivers", Driver[].class) {
+        Driver("drivers", new TypeToken<List<Driver>>() {
+        }) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
                 return "/" + parameter.get("driverId");
             }
-        }, DriverTasks("driverTask", DriverTask[].class) {
+        }, DriverTasks("driverTask", new TypeToken<List<DriverTask>>() {
+        }) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
                 return "";
@@ -102,9 +108,9 @@ public class ConnectionProxy {
         private final String resource;
         private final TypeToken typeToken;
 
-        RequestPath(String resource, Class clazz) {
+        RequestPath(String resource, TypeToken typeToken) {
             this.resource = resource;
-            this.typeToken = TypeToken.get(clazz);
+            this.typeToken = typeToken;
         }
 
         public List<?> request(Context context, Map<String, String> parameter) {
@@ -118,7 +124,7 @@ public class ConnectionProxy {
         }
 
         public List<?> convert(String dataAsJson) {
-            return JsonConverter.jsonFromObjectList(dataAsJson, typeToken);
+            return JsonConverter.jsonToObject(dataAsJson, typeToken);
         }
 
         public String getPath(Map<String, String> parameter) {
