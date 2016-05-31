@@ -57,8 +57,8 @@ public class ConnectionProxy {
         return (List<Driver>) Driver.request(context, parameter);
     }
 
-    public List<DriverTask> requestDriverTasks(Context context, Map<String, String> parameter) {
-        return (List<DriverTask>) DriverTasks.request(context, parameter);
+    public List<DriverTask> requestDriverTasks(Context context) {
+        return (List<DriverTask>) DriverTasks.request(context);
     }
 
     public enum RequestPath {
@@ -111,6 +111,10 @@ public class ConnectionProxy {
             ServerAddress serverAddress = PropertiesProvider.getInstance(context).getServerAddress();
             String request = new HttpClient(serverAddress.host).request(getPath(parameter));
             return convert(request);
+        }
+
+        public List<?> request(Context context) {
+            return request(context, null);
         }
 
         public List<?> convert(String dataAsJson) {

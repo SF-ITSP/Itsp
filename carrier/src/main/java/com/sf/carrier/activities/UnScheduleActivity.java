@@ -37,7 +37,7 @@ public class UnScheduleActivity extends NavigationActivity {
             protected List<Requirement> doInBackground(String... params) {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put(ConnectionProxy.RequestPath.CARRIER_ID, params[0]);
-                map.put(ConnectionProxy.RequestPath.CARRIER_ID, params[1]);
+                map.put(ConnectionProxy.RequestPath.STATUS, params[1]);
                 return ConnectionProxy.getInstance().requestRequirements(getApplicationContext(), map);
             }
 
