@@ -83,7 +83,7 @@ public class ConnectionProxy {
         Requirements("requirement", Requirement[].class) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
-                return "/" + parameter.get("carrierId") + "/" + parameter.get("status");
+                return "/" + parameter.get(CARRIER_ID) + "/" + parameter.get(STATUS);
             }
         },
         Driver("drivers", Driver[].class) {
@@ -97,7 +97,8 @@ public class ConnectionProxy {
                 return "";
             }
         };
-
+        public static final String STATUS = "status";
+        public static final String CARRIER_ID = "carrierId";
         private final String resource;
         private final TypeToken typeToken;
 
