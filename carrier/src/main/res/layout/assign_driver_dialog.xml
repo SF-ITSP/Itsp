@@ -27,13 +27,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/divider">
 
-        <com.sf.carrier.views.RoundImage
-            android:id="@+id/assign_driver_image"
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="8dp">
+
+            <ImageView
+                android:id="@+id/assign_driver_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/round_shape"
+                android:padding="2dp" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"

@@ -1,11 +1,12 @@
 package com.sf.carrier;
 
 import android.app.Application;
+import android.content.Context;
 
 public class CarrierApplication extends Application {
+    private static Context context;
 
-    private long carrierId ;
-    private long driverId;
+    private long carrierId;
 
     {
         carrierId = 888;
@@ -14,6 +15,7 @@ public class CarrierApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        CarrierApplication.context = getApplicationContext();
     }
 
     public long getCarrierId() {
@@ -24,11 +26,7 @@ public class CarrierApplication extends Application {
         this.carrierId = carrierId;
     }
 
-    public long getDriverId() {
-        return driverId;
-    }
-
-    public void setDriverId(long driverId) {
-        this.driverId = driverId;
+    public static Context getAppContext() {
+        return CarrierApplication.context;
     }
 }

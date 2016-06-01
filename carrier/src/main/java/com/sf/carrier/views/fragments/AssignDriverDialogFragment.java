@@ -3,6 +3,7 @@ package com.sf.carrier.views.fragments;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sf.app.library.connectivity.ConnectionProxy;
+import com.sf.carrier.CarrierApplication;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.DriverViewAdapter;
 import com.sf.contacts.domain.Driver;
@@ -20,6 +22,7 @@ import com.sf.contacts.domain.Driver;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.sf.carrier.views.viewHolder.DriverViewHolder.toRoundCorner;
 import static java.lang.String.valueOf;
 
 public class AssignDriverDialogFragment extends DialogFragment {
@@ -103,7 +106,7 @@ public class AssignDriverDialogFragment extends DialogFragment {
     }
 
     private void initDriverInfo(Driver driver) {
-        driverImage.setImageResource(R.drawable.user);
+        driverImage.setImageBitmap(toRoundCorner(BitmapFactory.decodeResource(CarrierApplication.getAppContext().getResources(), R.drawable.user), 360));
         nameTextValue.setText(driver.getName());
         drivingLicenseTypeTextValue.setText(driver.getDrivingLicenseType());
         ageTextValue.setText(valueOf(driver.getAge()));
