@@ -24,14 +24,6 @@ public class VehicleViewHolder extends RecyclerView.ViewHolder {
         this.adapter = adapter;
     }
 
-    public void bindViewData(int position) {
-        if (position == adapter.getCurrentPosition()) {
-            hasSelectedImage.setImageResource(R.drawable.selected);
-        } else {
-            hasSelectedImage.setImageResource(R.drawable.selected2);
-        }
-    }
-
     public void initView(View view) {
         vehicleNumberTextValue = (TextView) view.findViewById(R.id.vehicle_number);
         weightTextValue = (TextView) view.findViewById(R.id.weight);
@@ -44,5 +36,13 @@ public class VehicleViewHolder extends RecyclerView.ViewHolder {
         weightTextValue.setText(vehicleList.get(position).getWeight() + "吨-");
         vehicleTypeTextValue.setText(vehicleList.get(position).getType());
         hasSelectedImage.setImageResource(R.drawable.selected2);
+    }
+
+    public void setSelectedImage(int position) {
+        if (position == adapter.getCurrentPosition()) {
+            hasSelectedImage.setImageResource(R.drawable.selected);
+        } else {
+            hasSelectedImage.setImageResource(R.drawable.selected2);
+        }
     }
 }

@@ -53,8 +53,8 @@ public class ConnectionProxy {
         return (List<Driver>) Drivers.request(context, parameter);
     }
 
-    public List<Driver> requestDriverById(Context context, Map<String, String> parameter) {
-        return (List<Driver>) Driver.request(context, parameter);
+    public Driver requestDriverById(Context context, Map<String, String> parameter) {
+        return (Driver) Driver.request(context, parameter);
     }
 
     public List<DriverTask> requestDriverTasks(Context context) {
@@ -90,7 +90,7 @@ public class ConnectionProxy {
                 return "/" + parameter.get(CARRIER_ID) + "/" + parameter.get(STATUS);
             }
         },
-        Driver("drivers", new TypeToken<List<Driver>>() {
+        Driver("drivers", new TypeToken<Driver>() {
         }) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
@@ -113,17 +113,17 @@ public class ConnectionProxy {
             this.typeToken = typeToken;
         }
 
-        public List<?> request(Context context, Map<String, String> parameter) {
+        public Object request(Context context, Map<String, String> parameter) {
             ServerAddress serverAddress = PropertiesProvider.getInstance(context).getServerAddress();
             String request = new HttpClient(serverAddress.host).request(getPath(parameter));
             return convert(request);
         }
 
-        public List<?> request(Context context) {
+        public Object request(Context context) {
             return request(context, null);
         }
 
-        public List<?> convert(String dataAsJson) {
+        public Object convert(String dataAsJson) {
             return JsonConverter.jsonToObject(dataAsJson, typeToken);
         }
 

@@ -10,7 +10,6 @@ import com.sf.carrier.R;
 import com.sf.carrier.adapters.DriverViewAdapter;
 import com.sf.carrier.adapters.VehicleViewAdapter;
 import com.sf.carrier.views.fragments.AssignDriverDialogFragment;
-import com.sf.carrier.views.viewHolder.VehicleViewHolder;
 import com.sf.contacts.domain.Driver;
 import com.sf.contacts.domain.Vehicle;
 
@@ -51,8 +50,7 @@ public class ResourceDistributeActivity extends NavigationActivity {
 
         vehicleAdapter = new VehicleViewAdapter(getApplicationContext(), new VehicleViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(VehicleViewHolder viewHolder, int position) {
-                viewHolder.bindViewData(position);
+            public void onItemClick(int position) {
                 vehicleAdapter.setCurrentPosition(position);
             }
         });

@@ -27,7 +27,7 @@ public class VehicleViewAdapter extends RecyclerView.Adapter<VehicleViewHolder> 
     }
 
     public interface OnItemClickListener {
-        void onItemClick(VehicleViewHolder viewHolder, int position);
+        void onItemClick(int position);
     }
 
     @Override
@@ -49,15 +49,14 @@ public class VehicleViewAdapter extends RecyclerView.Adapter<VehicleViewHolder> 
     public void onBindViewHolder(final VehicleViewHolder viewHolder, final int position) {
         viewHolder.initData(vehicleList, position);
 
-
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                onItemClickListener.onItemClick(viewHolder, position);
-//                viewHolder.bindViewData(position);
+                onItemClickListener.onItemClick(position);
             }
         });
+
+        viewHolder.setSelectedImage(position);
     }
 
     public void setVehicleList(List<Vehicle> vehicleList) {
@@ -70,8 +69,7 @@ public class VehicleViewAdapter extends RecyclerView.Adapter<VehicleViewHolder> 
     }
 
     public void setCurrentPosition(int currentPosition) {
-        notifyItemChanged(currentPosition);
         this.currentPosition = currentPosition;
-        notifyItemChanged(currentPosition);
+        notifyDataSetChanged();
     }
 }

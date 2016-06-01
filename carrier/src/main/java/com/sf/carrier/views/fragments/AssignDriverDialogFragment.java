@@ -17,7 +17,6 @@ import com.sf.carrier.R;
 import com.sf.contacts.domain.Driver;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static java.lang.String.valueOf;
@@ -73,9 +72,9 @@ public class AssignDriverDialogFragment extends DialogFragment {
         new QueryDriverAsyncTask().execute(valueOf(driverId));
     }
 
-    private class QueryDriverAsyncTask extends AsyncTask<String, Void, List<Driver>> {
+    private class QueryDriverAsyncTask extends AsyncTask<String, Void, Driver> {
         @Override
-        protected List<Driver> doInBackground(String... params) {
+        protected Driver doInBackground(String... params) {
             Map<String, String> map = new HashMap<String, String>();
             map.put("driverId", params[0]);
 
@@ -83,12 +82,12 @@ public class AssignDriverDialogFragment extends DialogFragment {
         }
 
         @Override
-        protected void onPostExecute(List<Driver> drivers) {
-            if (drivers.isEmpty()) {
+        protected void onPostExecute(Driver drivers) {
+            if (drivers == null) {
                 return;
             }
 
-            initDriverInfo(drivers.get(0));
+            initDriverInfo(drivers);
         }
     }
 
