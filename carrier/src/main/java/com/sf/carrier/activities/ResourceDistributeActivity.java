@@ -66,9 +66,12 @@ public class ResourceDistributeActivity extends NavigationActivity {
 
         driverAdapter = new DriverViewAdapter(getApplicationContext(), new DriverViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Driver driver) {
+            public void onItemClick(Driver driver, int position) {
                 AssignDriverDialogFragment assignDriverDialogFragment = new AssignDriverDialogFragment();
                 assignDriverDialogFragment.setDriverId(driver.getId());
+                assignDriverDialogFragment.setPositionOfcurrentDriver(position);
+                assignDriverDialogFragment.setAdapter(driverAdapter);
+
                 assignDriverDialogFragment.show(getFragmentManager(), ASSIGN_DRIVER_TAG);
             }
         });

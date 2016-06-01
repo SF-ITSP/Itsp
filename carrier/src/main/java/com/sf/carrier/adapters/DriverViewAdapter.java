@@ -19,13 +19,15 @@ public class DriverViewAdapter extends RecyclerView.Adapter<DriverViewHolder> {
     private List<Driver> driverList = new ArrayList<Driver>();
     private final OnItemClickListener onItemClickListener;
 
+    private int currentPosition = -1;
+
     public DriverViewAdapter(Context context, OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
         inflater = LayoutInflater.from(context);
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Driver driver);
+        void onItemClick(Driver driver, int position);
     }
 
     @Override
@@ -36,7 +38,7 @@ public class DriverViewAdapter extends RecyclerView.Adapter<DriverViewHolder> {
     @Override
     public DriverViewHolder onCreateViewHolder(ViewGroup viewGroup, final int position) {
         View view = inflater.inflate(R.layout.driver_item_view, viewGroup, false);
-        DriverViewHolder viewHolder = new DriverViewHolder(view);
+        DriverViewHolder viewHolder = new DriverViewHolder(view, this);
 
         viewHolder.initView(view);
 
@@ -50,13 +52,24 @@ public class DriverViewAdapter extends RecyclerView.Adapter<DriverViewHolder> {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClickListener.onItemClick(driverList.get(position));
+                onItemClickListener.onItemClick(driverList.get(position), position);
             }
         });
+
+        viewHolder.setSelectedMainDriverImage(position);
     }
 
     public void setDriverList(List<Driver> driverList) {
         this.driverList = driverList;
+        notifyDataSetChanged();
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(int currentPosition) {
+        this.currentPosition = currentPosition;
         notifyDataSetChanged();
     }
 }

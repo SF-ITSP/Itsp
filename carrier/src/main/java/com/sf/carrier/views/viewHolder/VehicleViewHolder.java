@@ -15,7 +15,7 @@ public class VehicleViewHolder extends RecyclerView.ViewHolder {
     private TextView vehicleNumberTextValue;
     private TextView weightTextValue;
     private TextView vehicleTypeTextValue;
-    public ImageView hasSelectedImage;
+    public ImageView isSelectedImage;
 
     private VehicleViewAdapter adapter;
 
@@ -28,21 +28,21 @@ public class VehicleViewHolder extends RecyclerView.ViewHolder {
         vehicleNumberTextValue = (TextView) view.findViewById(R.id.vehicle_number);
         weightTextValue = (TextView) view.findViewById(R.id.weight);
         vehicleTypeTextValue = (TextView) view.findViewById(R.id.vehicle_type);
-        hasSelectedImage = (ImageView) view.findViewById(R.id.has_selected);
+        isSelectedImage = (ImageView) view.findViewById(R.id.is_selected);
     }
 
     public void initData(List<Vehicle> vehicleList, int position){
         vehicleNumberTextValue.setText(vehicleList.get(position).getVehicleNumber());
         weightTextValue.setText(vehicleList.get(position).getWeight() + "吨-");
         vehicleTypeTextValue.setText(vehicleList.get(position).getType());
-        hasSelectedImage.setImageResource(R.drawable.selected2);
+        isSelectedImage.setImageResource(R.drawable.selected2);
     }
 
     public void setSelectedImage(int position) {
         if (position == adapter.getCurrentPosition()) {
-            hasSelectedImage.setImageResource(R.drawable.selected);
+            isSelectedImage.setImageResource(R.drawable.selected);
         } else {
-            hasSelectedImage.setImageResource(R.drawable.selected2);
+            isSelectedImage.setImageResource(R.drawable.selected2);
         }
     }
 }

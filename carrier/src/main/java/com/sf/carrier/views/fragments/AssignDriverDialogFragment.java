@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.sf.app.library.connectivity.ConnectionProxy;
 import com.sf.carrier.R;
+import com.sf.carrier.adapters.DriverViewAdapter;
 import com.sf.contacts.domain.Driver;
 
 import java.util.HashMap;
@@ -29,11 +30,22 @@ public class AssignDriverDialogFragment extends DialogFragment {
     private TextView ageTextValue;
     private TextView drivingExperienceTextValue;
 
-    private TextView assignMainDriverButton;
+    private TextView assignMainDriverTextView;
     private long driverId;
+
+    private int positionOfcurrentDriver;
+    private DriverViewAdapter adapter;
 
     public void setDriverId(long driverId) {
         this.driverId = driverId;
+    }
+
+    public void setPositionOfcurrentDriver(int positionOfcurrentDriver) {
+        this.positionOfcurrentDriver = positionOfcurrentDriver;
+    }
+
+    public void setAdapter(DriverViewAdapter adapter) {
+        this.adapter = adapter;
     }
 
     @Override
@@ -48,12 +60,11 @@ public class AssignDriverDialogFragment extends DialogFragment {
         drivingLicenseTypeTextValue = (TextView) view.findViewById(R.id.driving_license_type_value);
         drivingExperienceTextValue = (TextView) view.findViewById(R.id.driving_experience_value);
 
-        assignMainDriverButton = (TextView) view.findViewById(R.id.assign_main_driver);
-        assignMainDriverButton.setOnClickListener(new View.OnClickListener() {
+        assignMainDriverTextView = (TextView) view.findViewById(R.id.assign_main_driver);
+        assignMainDriverTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView driverSelectButton = (ImageView) getActivity().findViewById(R.id.is_main_driver);
-                driverSelectButton.setImageResource(R.drawable.selected);
+                adapter.setCurrentPosition(positionOfcurrentDriver);
 
                 dismiss();
             }
