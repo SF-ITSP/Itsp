@@ -17,18 +17,17 @@ public class VehicleViewAdapter extends RecyclerView.Adapter<VehicleViewHolder> 
 
     private LayoutInflater inflater;
     private List<Vehicle> vehicleList = new ArrayList<Vehicle>();
-    private OnItemClickListener mOnItemClickListener;
+    private OnItemClickListener onItemClickListener;
 
-    public VehicleViewAdapter(Context context) {
+    private int currentPosition = -1;
+
+    public VehicleViewAdapter(Context context, OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
         inflater = LayoutInflater.from(context);
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
-        this.mOnItemClickListener = mOnItemClickListener;
+        void onItemClick(VehicleViewHolder viewHolder, int position);
     }
 
     @Override
@@ -39,7 +38,7 @@ public class VehicleViewAdapter extends RecyclerView.Adapter<VehicleViewHolder> 
     @Override
     public VehicleViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = inflater.inflate(R.layout.vehicle_item_view, viewGroup, false);
-        VehicleViewHolder viewHolder = new VehicleViewHolder(view);
+        VehicleViewHolder viewHolder = new VehicleViewHolder(view, this);
 
         viewHolder.initView(view);
 
@@ -50,18 +49,29 @@ public class VehicleViewAdapter extends RecyclerView.Adapter<VehicleViewHolder> 
     public void onBindViewHolder(final VehicleViewHolder viewHolder, final int position) {
         viewHolder.initData(vehicleList, position);
 
-        if (mOnItemClickListener != null) {
-            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnItemClickListener.onItemClick(viewHolder.itemView, position);
-                }
-            });
-        }
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                onItemClickListener.onItemClick(viewHolder, position);
+//                viewHolder.bindViewData(position);
+            }
+        });
     }
 
     public void setVehicleList(List<Vehicle> vehicleList) {
         this.vehicleList = vehicleList;
         notifyDataSetChanged();
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(int currentPosition) {
+        notifyItemChanged(currentPosition);
+        this.currentPosition = currentPosition;
+        notifyItemChanged(currentPosition);
     }
 }

@@ -4,15 +4,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.sf.app.library.connectivity.ConnectionProxy;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.DriverViewAdapter;
-import com.sf.carrier.adapters.DriverViewAdapter.OnItemClickListener;
 import com.sf.carrier.adapters.VehicleViewAdapter;
 import com.sf.carrier.views.fragments.AssignDriverDialogFragment;
+import com.sf.carrier.views.viewHolder.VehicleViewHolder;
 import com.sf.contacts.domain.Driver;
 import com.sf.contacts.domain.Vehicle;
 
@@ -51,15 +49,14 @@ public class ResourceDistributeActivity extends NavigationActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         vehicleRecyclerView.setLayoutManager(linearLayoutManager);
 
-        vehicleAdapter = new VehicleViewAdapter(getApplicationContext());
-        vehicleRecyclerView.setAdapter(vehicleAdapter);
-
-        vehicleAdapter.setOnItemClickListener(new VehicleViewAdapter.OnItemClickListener() {
+        vehicleAdapter = new VehicleViewAdapter(getApplicationContext(), new VehicleViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                ((ImageView) findViewById(R.id.has_selected)).setImageResource(R.drawable.selected);
+            public void onItemClick(VehicleViewHolder viewHolder, int position) {
+                viewHolder.bindViewData(position);
+                vehicleAdapter.setCurrentPosition(position);
             }
         });
+        vehicleRecyclerView.setAdapter(vehicleAdapter);
     }
 
     private void initDriverListView() {
@@ -69,7 +66,7 @@ public class ResourceDistributeActivity extends NavigationActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         driverRecyclerView.setLayoutManager(linearLayoutManager);
 
-        driverAdapter = new DriverViewAdapter(getApplicationContext(), new OnItemClickListener() {
+        driverAdapter = new DriverViewAdapter(getApplicationContext(), new DriverViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Driver driver) {
                 AssignDriverDialogFragment assignDriverDialogFragment = new AssignDriverDialogFragment();
