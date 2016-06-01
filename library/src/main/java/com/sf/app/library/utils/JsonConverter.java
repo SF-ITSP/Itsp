@@ -16,7 +16,7 @@ public class JsonConverter {
         return getGson().toJson(t);
     }
 
-    public static <T> T jsonToObject(String json, TypeToken typeToken) {
+    public static <T> T jsonToObject(String json, TypeToken typeToken) throws JsonSyntaxException {
         return getGson().fromJson(json, typeToken.getType());
     }
 

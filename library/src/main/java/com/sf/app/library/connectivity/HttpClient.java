@@ -1,5 +1,7 @@
 package com.sf.app.library.connectivity;
 
+import android.util.Log;
+
 import com.google.common.io.CharStreams;
 import com.sf.app.library.connectivity.ResponseResult.ResponseResultType;
 
@@ -36,15 +38,9 @@ public class HttpClient {
         this.host = host;
     }
 
-    public String request(String path) {
-        try {
-            HttpURLConnection connection = initConnection(URL_JOINER + path);
-            return getResponse(connection);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return "";
+    public String request(String path) throws IOException {
+        HttpURLConnection connection = initConnection(URL_JOINER + path);
+        return getResponse(connection);
     }
 
     private String getResponse(HttpURLConnection connection) throws IOException {
@@ -56,6 +52,7 @@ public class HttpClient {
 
     private HttpURLConnection initConnection(String path) throws IOException {
         URL url = new URL(host + path);
+        Log.i(getClass().getName(), url.toString());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setConnectTimeout(8000);
