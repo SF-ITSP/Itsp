@@ -1,31 +1,34 @@
 package com.sf.app.library.connectivity;
 
-import java.util.List;
-
 import static com.sf.app.library.connectivity.ResponseResult.ResponseResultType.FAILED;
 
 public class ResponseResult<T> {
 
     private ResponseResultType resultType;
-    private List<T> resultList;
+    private T result;
     private Exception exception;
 
     public enum ResponseResultType {
         SUCCEEDED,
-        FAILED
+        FAILED,
+        SUCCEEDED_EMPTY
     }
 
     public ResponseResultType getResultType() {
         return resultType;
     }
 
-    public List<T> getResultList() {
-        return resultList;
+    public T getResult() {
+        return result;
     }
 
-    public void setResultList(List<T> resultList) {
-        this.resultList = resultList;
+    public void setResult(T result) {
+        this.result = result;
         this.resultType = ResponseResultType.SUCCEEDED;
+    }
+
+    public void setEmptyResult() {
+        this.resultType = ResponseResultType.SUCCEEDED_EMPTY;
     }
 
     public Exception getException() {

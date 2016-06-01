@@ -3,12 +3,15 @@ package com.sf.carrier.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.sf.app.library.connectivity.ConnectionProxy;
+import com.sf.app.library.connectivity.ResponseResult;
 import com.sf.carrier.CarrierApplication;
 import com.sf.carrier.R;
 import com.sf.carrier.adapters.RequirementAdapter;
@@ -32,9 +35,9 @@ public class UnScheduleActivity extends NavigationActivity {
 
     private void requestRequirement() {
         CarrierApplication application = (CarrierApplication) getApplication();
-        new AsyncTask<String, Void, List<Requirement>>() {
+        new AsyncTask<String, Void, ResponseResult<List<Requirement>>>() {
             @Override
-            protected List<Requirement> doInBackground(String... params) {
+            protected ResponseResult<List<Requirement>> doInBackground(String... params) {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put(ConnectionProxy.RequestPath.CARRIER_ID, params[0]);
                 map.put(ConnectionProxy.RequestPath.STATUS, params[1]);
@@ -42,8 +45,20 @@ public class UnScheduleActivity extends NavigationActivity {
             }
 
             @Override
-            protected void onPostExecute(List<Requirement> requirementList) {
-                adapter.setItems(requirementList);
+            protected void onPostExecute(ResponseResult<List<Requirement>> responseResult) {
+
+                switch (responseResult.getResultType()) {
+                    case SUCCEEDED:
+                        adapter.setItems(responseResult.getResult());
+                        break;
+                    case FAILED:
+                        Log.e(getClass().getName(), responseResult.getException().getMessage());
+                        Toast.makeText(getApplicationContext(), responseResult.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case SUCCEEDED_EMPTY:
+                        break;
+                }
+
             }
         }.execute(String.valueOf(application.getCarrierId()), "1");
     }
