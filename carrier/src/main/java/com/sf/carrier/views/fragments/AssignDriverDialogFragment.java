@@ -82,12 +82,12 @@ public class AssignDriverDialogFragment extends DialogFragment {
         }
 
         @Override
-        protected void onPostExecute(Driver drivers) {
-            if (drivers == null) {
+        protected void onPostExecute(Driver driver) {
+            if (driver == null) {
                 return;
             }
 
-            initDriverInfo(drivers);
+            initDriverInfo(driver);
         }
     }
 
