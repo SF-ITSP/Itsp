@@ -54,7 +54,7 @@ public class TaskFragment extends Fragment {
             @Override
             protected List<DriverTask> doInBackground(Void... params) {
                 //Task task = new Task("地址", "1", "12:00", "10:00", 1, "1");
-                return ConnectionProxy.getInstance().requestDriverTasks(getActivity().getApplicationContext(), null);
+                return ConnectionProxy.getInstance().requestDriverTasks(getActivity().getApplicationContext());
             }
 
             @Override
