@@ -71,13 +71,14 @@ public class UnScheduleActivity extends NavigationActivity {
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                gotoResourceDistributeActivity();
+                gotoResourceDistributeActivity(adapter.getItem(position).getId());
             }
         });
     }
 
-    private void gotoResourceDistributeActivity() {
+    private void gotoResourceDistributeActivity(long requirementId) {
         Intent intent = new Intent(getApplicationContext(), ResourceDistributeActivity.class);
+        intent.putExtra("requirementId", requirementId);
         startActivity(intent);
     }
 

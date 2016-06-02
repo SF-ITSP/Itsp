@@ -1,9 +1,12 @@
 package com.sf.carrier.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.sf.app.library.connectivity.ConnectionProxy;
 import com.sf.carrier.R;
@@ -11,6 +14,7 @@ import com.sf.carrier.adapters.DriverViewAdapter;
 import com.sf.carrier.adapters.VehicleViewAdapter;
 import com.sf.carrier.views.fragments.AssignDriverDialogFragment;
 import com.sf.contacts.domain.Driver;
+import com.sf.contacts.domain.Requirement;
 import com.sf.contacts.domain.Vehicle;
 
 import java.util.HashMap;
@@ -18,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.sf.carrier.views.fragments.AssignDriverDialogFragment.ASSIGN_DRIVER_TAG;
+import static java.lang.String.valueOf;
 
 public class ResourceDistributeActivity extends NavigationActivity {
     private RecyclerView driverRecyclerView;
@@ -25,6 +30,8 @@ public class ResourceDistributeActivity extends NavigationActivity {
 
     private RecyclerView vehicleRecyclerView;
     private VehicleViewAdapter vehicleAdapter;
+
+    private TextView taskAssignConfirmTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,29 @@ public class ResourceDistributeActivity extends NavigationActivity {
         initVehicleListView();
 
         initDriverListView();
+
+        taskAssignConfirmTextView = (TextView) findViewById(R.id.task_assign_confirm);
+        taskAssignConfirmTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AsyncTask<String, Void, Requirement>() {
+                    @Override
+                    protected Requirement doInBackground(String... params) {
+                        Map<String, String> map = new HashMap<String, String>();
+                        map.put("requirementId", params[0]);
+
+                        return ConnectionProxy.getInstance().requestRequirementById(getApplicationContext(), map);
+                    }
+
+                    @Override
+                    protected void onPostExecute(Requirement requirement) {
+
+                    }
+                }.execute(valueOf(getIntent().getLongExtra("requirementId", 0)));
+
+                goBackToUnScheduleActivity();
+            }
+        });
     }
 
     private void initVehicleListView() {
@@ -113,6 +143,11 @@ public class ResourceDistributeActivity extends NavigationActivity {
                 driverAdapter.setDriverList(drivers);
             }
         }.execute();
+    }
+
+    private void goBackToUnScheduleActivity() {
+        Intent intent = new Intent(getApplicationContext(), UnScheduleActivity.class);
+        startActivity(intent);
     }
 
     @Override

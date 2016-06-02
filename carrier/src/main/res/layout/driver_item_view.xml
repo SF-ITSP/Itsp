@@ -10,8 +10,8 @@
 
         <ImageView
             android:id="@+id/driver_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="@dimen/driver_image_margin"
             android:layout_marginRight="@dimen/driver_image_margin"
             android:background="@drawable/round_shape"
@@ -23,12 +23,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignRight="@id/driver_image"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/selected" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="80dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/driver"
         android:layout_marginLeft="@dimen/driver_image_margin"

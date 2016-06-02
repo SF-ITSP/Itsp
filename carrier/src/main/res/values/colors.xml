@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="white">#FFF</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
@@ -12,4 +13,5 @@
     <color name="assignDriverButton">#25c428</color>
     <color name="vehicle_info_text">#FFF</color>
     <color name="tips_background">#b1b1b1</color>
+    <color name="task_assign_confirm_background">#3aa4da</color>
 </resources>

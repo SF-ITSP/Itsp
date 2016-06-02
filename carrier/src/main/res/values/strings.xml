@@ -19,5 +19,6 @@
     <string name="my_task">我的任务</string>
     <string name="settings">设置</string>
     <string name="vehicle_tip">选择合适的车辆</string>
+    <string name="task_assign_confirm">√ 确定</string>
 
 </resources>

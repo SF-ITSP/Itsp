@@ -22,6 +22,7 @@ import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Driver
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.DriverTasks;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Drivers;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Requirements;
+import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Requirement;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Tasks;
 import static com.sf.app.library.connectivity.ConnectionProxy.RequestPath.Vehicles;
 
@@ -63,6 +64,15 @@ public class ConnectionProxy {
             responseResult.setException(e);
         }
         return responseResult;
+    }
+
+    public Requirement requestRequirementById(Context context, Map<String, String> parameter) {
+        try {
+            return (Requirement) Requirement.request(context, parameter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (Requirement)RequestPath.NULL_OBJECT;
     }
 
     public List<Driver> requestDrivers(Context context, Map<String, String> parameter) {
@@ -121,13 +131,21 @@ public class ConnectionProxy {
                 return "/" + parameter.get(CARRIER_ID) + "/" + parameter.get(STATUS);
             }
         },
+        Requirement("requirement", new TypeToken<Requirement>() {
+        }) {
+            @Override
+            public String constructParameter(Map<String, String> parameter) {
+                return "/" + parameter.get("requirementId");
+            }
+        },
         Driver("drivers", new TypeToken<Driver>() {
         }) {
             @Override
             public String constructParameter(Map<String, String> parameter) {
                 return "/" + parameter.get("driverId");
             }
-        }, DriverTasks("driverTask", new TypeToken<List<DriverTask>>() {
+        },
+        DriverTasks("driverTask", new TypeToken<List<DriverTask>>() {
         }) {
             @Override
             public String constructParameter(Map<String, String> parameter) {

@@ -137,7 +137,7 @@
             android:background="@drawable/assign_main_driver_button_background"
             android:padding="8dp"
             android:text="@string/assign_main_driver_button_text"
-            android:textColor="#fff"
+            android:textColor="@color/white"
             android:textSize="@dimen/assign_driver_button_text_size" />
 
         <TextView
